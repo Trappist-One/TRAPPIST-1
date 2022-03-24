@@ -1,0 +1,58 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
+      routes:
+        - id: auth
+          uri: lb://t1-auth-server
+          predicates:
+            - Path=/api-auth/**
+          filters:
+            - StripPrefix=1
+            - PreserveHostHeader
+        - id: auth-login-token
+          uri: lb://t1-auth-server
+          predicates:
+            - Path=/oauth/token
+          filters:
+            - PreserveHostHeader
+        - id: auth-login-authorize
+          uri: lb://t1-auth-server
+          predicates:
+            - Path=/oauth/authorize
+          filters:
+            - PreserveHostHeader
+        - id: auth-check-process
+          uri: lb://t1-auth-server
+          predicates:
+            - Path=/oauth/check_token
+          filters:
+            - PreserveHostHeader
+        - id: admin-system
+          uri: lb://t1-admin-system
+          predicates:
+            - Path=/api-system/**
+          filters:
+            - StripPrefix=1
+        - id: search-center
+          uri: lb://t1-search-server
+          predicates:
+            - Path=/api-search/**
+          filters:
+            - StripPrefix=1
+#    sentinel:
+#      datasource.ds1.nacos:
+#        server-addr: ${spring.cloud.nacos.server-addr}
+#        data-id: ${spring.application.name}-sentinel-gw-flow
+#        group-id: DEFAULT_GROUP
+#        ruleType: gw-flow
+#      filter:
+#        enabled: true
+
+t1:
+  swagger-agg:
+    generate-routes: admin-system,search-center
+

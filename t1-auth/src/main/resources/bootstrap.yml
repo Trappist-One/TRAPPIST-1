@@ -1,0 +1,16 @@
+server:
+  port: 9001
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2SESSION
+
+spring:
+  application:
+    name: t1-auth-server
+
+encrypt:
+  key-store:
+    location: classpath:t1.jks
+    secret: t1!@#$
+    alias: t1

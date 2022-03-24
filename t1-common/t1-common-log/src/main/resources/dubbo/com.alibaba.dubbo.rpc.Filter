@@ -1,0 +1,1 @@
+logTrace=com.t1.log.trace.DubboTraceFilter

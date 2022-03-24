@@ -1,0 +1,19 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: t1-tx-manager
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+tx-lcn:
+  logger:
+    enabled: true
+    driver-class-name: ${spring.datasource.druid.driver-class-name}
+    jdbc-url: ${spring.datasource.druid.url}
+    password: ${spring.datasource.druid.password}
+    username: ${spring.datasource.druid.username}
+  manager:
+    admin-key: 123456
+    dtx-time: 15000

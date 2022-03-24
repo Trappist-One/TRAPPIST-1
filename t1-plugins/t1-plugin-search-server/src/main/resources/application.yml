@@ -1,0 +1,16 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: ${t1.elasticsearch.uris}
+      username: ${t1.elasticsearch.username}
+      password: ${t1.elasticsearch.password}
+
+t1:
+  indices:
+    show: sys-log-*,mysql-slowlog-*,sys_user,point-log-*,audit-log-*
+  swagger:
+    enabled: true
+    title: 搜索中心
+    description: 搜索中心接口文档
+    version: 1.0
+    base-package: com.t1.plugin.search.admin.controller

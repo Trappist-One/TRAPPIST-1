@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>T-1</artifactId>
+        <groupId>com.t1</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>t1-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>t1-common-core</module>
+        <module>t1-common-auth</module>
+        <module>t1-common-db</module>
+        <module>t1-common-elasticsearch</module>
+        <module>t1-common-log</module>
+        <module>t1-common-redis</module>
+        <module>t1-common-oss</module>
+        <module>t1-common-feign</module>
+        <module>t1-common-sentinel</module>
+        <module>t1-common-swagger2</module>
+        <module>t1-common-zookeeper</module>
+        <module>t1-common-tenant</module>
+        <module>t1-common-security</module>
+        <module>t1-common-search-client</module>
+    </modules>
+
+
+</project>

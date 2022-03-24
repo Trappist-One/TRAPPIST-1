@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>t1-biz</artifactId>
+        <groupId>com.t1</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>t1-admin-web</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-system</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-monitor</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-activiti</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-toolkit</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-intelligent</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-biz-quartz</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-common-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.t1</groupId>
+            <artifactId>t1-common-search-client</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

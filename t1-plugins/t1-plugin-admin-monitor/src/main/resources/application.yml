@@ -1,0 +1,24 @@
+server:
+  port: 10001
+
+spring:
+  boot:
+    admin:
+      ui:
+        external-views:
+          - label: "SQL监控"
+            url: /druid/sql.html
+            order: 2000
+            iframe: true
+  application:
+    name: t1-admin-monitor
+
+# druid-admin 需要监控的列表
+monitor:
+  applications:
+    - t1-system
+    - t1-monitor
+    - t1-activiti
+    - t1-intelligent
+    - t1-quartz
+    - t1-toolkit
