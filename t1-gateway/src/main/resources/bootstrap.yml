@@ -1,6 +1,6 @@
 server:
   port: 9000
-
+  host: localhost
 spring:
   application:
     name: t1-gateway
@@ -18,7 +18,11 @@ spring:
           data-id: common.yaml
           group: DEV
           refresh: true
-      shared-configs[1]:
-        data-id: gateway.yaml
-        group: DEV
-        refresh: true
+        shared-configs[1]:
+          data-id: globalconfig.yaml
+          group: DEV
+          refresh: true
+        shared-configs[2]:
+          data-id: gateway.yaml
+          group: DEV
+          refresh: true
