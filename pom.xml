@@ -12,7 +12,7 @@
         <module>t1-common</module>
         <module>t1-gateway</module>
         <module>t1-biz</module>
-        <module>t1-config</module>
+
         <module>t1-plugins</module>
     </modules>
     <packaging>pom</packaging>
