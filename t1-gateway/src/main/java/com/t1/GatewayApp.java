@@ -35,7 +35,7 @@ public class GatewayApp {
             path = "";
         }
         log.info("\n----------------------------------------------------------\n\t" +
-                "Application T-1 Gateway is running! Access URLs:\n\t" +
+                "Application TRAPPIST-1 Gateway is running! Access URLs:\n\t" +
                 "Swagger文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
                 "----------------------------------------------------------");
 

@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description: 表单设计器[工具类]
  *

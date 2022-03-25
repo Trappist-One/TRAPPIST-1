@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.t1</groupId>
-    <artifactId>T-1</artifactId>
+    <artifactId>TRAPPIST-1</artifactId>
     <version>1.0.0</version>
     <modules>
         <module>t1-auth</module>

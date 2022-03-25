@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description:
  * 用于生成表单校验非空,指定正则规则的触发方式。

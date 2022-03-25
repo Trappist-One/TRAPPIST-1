@@ -20,7 +20,7 @@ public class BannerInitializer implements ApplicationContextInitializer<Configur
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         if (!(applicationContext instanceof AnnotationConfigApplicationContext)) {
-            LogoBanner logoBanner = new LogoBanner(BannerInitializer.class, "/banner/logo.txt", "Welcome to T-1", 3, 14, new Color[5], true);
+            LogoBanner logoBanner = new LogoBanner(BannerInitializer.class, "/banner/logo.txt", "Welcome to TRAPPIST-1", 3, 14, new Color[5], true);
             CustomBanner.show(logoBanner, new Description(BannerConstant.VERSION + ":", CommonConstants.PROJECT_VERSION, 0, 1)
             );
         }

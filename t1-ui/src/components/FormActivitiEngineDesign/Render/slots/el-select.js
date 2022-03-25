@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description: el-select控件[插槽]
  *

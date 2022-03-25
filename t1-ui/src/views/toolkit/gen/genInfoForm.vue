@@ -115,7 +115,7 @@
               <i class="el-icon-question"></i>
             </el-tooltip>
           </span>
-          <el-input v-model="info.genPath" placeholder="填写项目路径，如D://T-1"/>
+          <el-input v-model="info.genPath" placeholder="填写项目路径，如D://TRAPPIST-1"/>
         </el-form-item>
       </el-col>
 

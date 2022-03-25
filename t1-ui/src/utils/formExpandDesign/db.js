@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description:
  * 目前实现表单独立

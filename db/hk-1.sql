@@ -2235,7 +2235,7 @@ CREATE TABLE `sys_datasource`  (
 -- ----------------------------
 -- Records of sys_datasource
 -- ----------------------------
-INSERT INTO `sys_datasource` VALUES (1, 'T-1', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://localhost:3306/t1-1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai', 'root', 'root', 'mysql_T-1_1', NULL, '2021-05-03 18:23:51', NULL, '2021-05-03 18:23:51', '', '0');
+INSERT INTO `sys_datasource` VALUES (1, 'TRAPPIST-1', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://localhost:3306/t1-1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai', 'root', 'root', 'mysql_T-1_1', NULL, '2021-05-03 18:23:51', NULL, '2021-05-03 18:23:51', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dept

@@ -35,7 +35,7 @@ public class TxclnApp {
             path = "";
         }
         log.info("\n----------------------------------------------------------\n\t" +
-                "Application T-1 TxManager is running! Access URLs:\n\t" +
+                "Application TRAPPIST-1 TxManager is running! Access URLs:\n\t" +
                 "Home: \thttp://" + ip + ":" + port + path + "/doc.html\n\t" +
                 "----------------------------------------------------------");
     }

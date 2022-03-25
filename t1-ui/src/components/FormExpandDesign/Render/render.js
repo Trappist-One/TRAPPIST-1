@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description:
  * JSX动态渲染控件插槽[目前针对于于DraggableItem.Vue中JSX渲染]

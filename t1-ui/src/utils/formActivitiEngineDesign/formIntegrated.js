@@ -3,7 +3,7 @@ import ruleTrigger from "@/components/FormActivitiEngineDesign/DesignConfig/rule
 import {fetchFormActivitiEngine} from "@/api/activiti/formActivitiEngine";
 
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description: 集成form表单[合并]
  *

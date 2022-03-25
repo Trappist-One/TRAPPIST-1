@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 50725
  Source Host           : localhost:3306
- Source Schema         : T-1
+ Source Schema         : TRAPPIST-1
 
  Target Server Type    : MySQL
  Target Server Version : 50725

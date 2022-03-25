@@ -1,5 +1,5 @@
 /**
- * @program: T-1
+ * @program: TRAPPIST-1
  *
  * @description: 表单设计器操作记录器[增删改-操作记录池]
  *

@@ -2,7 +2,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/Trappist-One/T-1.git
+git clone https://github.com/Trappist-One/TRAPPIST-1.git
 
 # 进入项目目录
 cd t1-ui

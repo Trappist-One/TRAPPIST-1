@@ -34,7 +34,7 @@ public class AdminMonitorApp {
             path = "";
         }
         log.info("\n----------------------------------------------------------\n\t" +
-                "Application T-1 AdminMonitor is running! Access URLs:\n\t" +
+                "Application TRAPPIST-1 AdminMonitor is running! Access URLs:\n\t" +
                 "Home: \thttp://" + ip + ":" + port + path + "/\n\t" +
                 "----------------------------------------------------------");
 
