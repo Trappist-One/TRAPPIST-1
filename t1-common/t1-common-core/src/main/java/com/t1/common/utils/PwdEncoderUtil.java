@@ -42,4 +42,10 @@ public class PwdEncoderUtil {
         delegatingPasswordEncoder.setDefaultPasswordEncoderForMatches(encoders.get(encodingId));
         return delegatingPasswordEncoder;
     }
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode("t@123456");
+        System.out.println(encode);
+    }
 }
