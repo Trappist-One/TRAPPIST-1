@@ -1020,7 +1020,7 @@ CREATE TABLE `dev_table`  (
 -- ----------------------------
 -- Records of dev_table
 -- ----------------------------
-INSERT INTO `dev_table` VALUES (1, 'Test', '测试', 'Test', 'crud', 'com.t1.biz.test', '测试模块', '测试业务', '测试', 'HK', '24', '0', '0', '{\"treeId\":null,\"treeName\":null,\"treeParentId\":null}', 58, 'G:\\test', NULL, NULL, NULL, '2021-05-03 21:01:48', '', NULL, '测试', '1');
+INSERT INTO `dev_table` VALUES (1, 'Test', '测试', 'Test', 'crud', 'com.t1.biz.test', '测试模块', '测试业务', '测试', 'T1', '24', '0', '0', '{\"treeId\":null,\"treeName\":null,\"treeParentId\":null}', 58, 'G:\\test', NULL, NULL, NULL, '2021-05-03 21:01:48', '', NULL, '测试', '1');
 INSERT INTO `dev_table` VALUES (2, 'demo', '', 'Demo', 'crud', 'com.t1.biz.cms', 'cms', 'demo', '', 'admin', '24', '0', '1', NULL, NULL, NULL, NULL, NULL, 'admin', '2021-05-03 21:17:00', '', NULL, NULL, '1');
 INSERT INTO `dev_table` VALUES (3, 'intelligent_form_extend', '表单扩展表', 'IntelligentFormExtend', 'crud', 'com.t1.biz.cms', 'cms', 'intelligentFormExtend', '单扩展', 'admin', '24', '0', '1', NULL, NULL, NULL, NULL, NULL, 'admin', '2021-05-03 21:17:16', '', NULL, NULL, '0');
 INSERT INTO `dev_table` VALUES (4, 'test', '测试', 'Test', 'crud', 'com.t1.biz.cms', 'cms', 'test', '测试', 'admin', '24', '0', '1', NULL, NULL, NULL, NULL, NULL, 'admin', '2021-05-03 21:18:43', '', NULL, NULL, '0');
@@ -2235,7 +2235,7 @@ CREATE TABLE `sys_datasource`  (
 -- ----------------------------
 -- Records of sys_datasource
 -- ----------------------------
-INSERT INTO `sys_datasource` VALUES (1, 'TRAPPIST-1', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://localhost:3306/t1-1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai', 'root', 'root', 'mysql_T-1_1', NULL, '2021-05-03 18:23:51', NULL, '2021-05-03 18:23:51', '', '0');
+INSERT INTO `sys_datasource` VALUES (1, 'TRAPPIST-1', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://localhost:3306/t1-1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true', 'root', 'root', 'mysql_t-one', NULL, '2021-05-03 18:23:51', NULL, '2021-05-03 18:23:51', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dept
