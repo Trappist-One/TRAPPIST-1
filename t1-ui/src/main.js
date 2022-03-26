@@ -8,7 +8,7 @@ import Element from 'element-ui'
 import './assets/styles/element-variables.scss'
 
 import '@/assets/styles/index.scss' // global css
-import '@/assets/styles/hk.scss' // hk css
+import '@/assets/styles/t1.scss' // t1 css
 import App from './App'
 import store from './store'
 import router from './router'
@@ -29,7 +29,7 @@ import {
   vGet,
   newPath,
   preview
-} from "@/utils/hk";
+} from "@/utils/t1";
 import Pagination from "@/components/Pagination";
 //自定义表格工具扩展
 import RightToolbar from "@/components/RightToolbar"

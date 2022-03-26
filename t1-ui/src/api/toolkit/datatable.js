@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { praseStrEmpty } from "@/utils/hk";
+import { praseStrEmpty } from "@/utils/t1";
 import Api from '@/consts/apiConst'
 
 // 查询数据表列表

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 import Api from '@/consts/apiConst'
-import { praseStrEmpty } from "@/utils/hk";
+import { praseStrEmpty } from "@/utils/t1";
 
 // 查询用户列表
 export function listUser(query) {

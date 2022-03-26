@@ -11,7 +11,7 @@
 
 import {refactorArrayIndex} from '@/utils/formExpandDesign'
 import {deepClone} from "@/utils";
-import {vGet} from "@/utils/hk";
+import {vGet} from "@/utils/t1";
 import {layoutComponents} from "@/components/FormExpandDesign/DesignConfig/config";
 import {find} from "@riophae/vue-treeselect/src/utils";
 

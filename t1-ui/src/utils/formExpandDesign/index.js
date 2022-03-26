@@ -7,7 +7,7 @@
  *
  * @create: 2021-03-10
  **/
-import {vGet} from "@/utils/hk";
+import {vGet} from "@/utils/t1";
 
 // 深拷贝对象
 export function deepClone(obj) {

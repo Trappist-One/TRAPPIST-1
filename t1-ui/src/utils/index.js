@@ -1,4 +1,4 @@
-import { parseTime } from './hk'
+import { parseTime } from './t1'
 
 /**
  * 表格时间格式化

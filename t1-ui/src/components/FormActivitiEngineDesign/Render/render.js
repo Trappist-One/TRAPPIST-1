@@ -14,7 +14,7 @@
 
 import {deepClone} from '@/utils/formExpandDesign/index'
 import {makeMap} from "@/utils";
-import {vGet} from "@/utils/hk";
+import {vGet} from "@/utils/t1";
 
 //插槽集合
 const componentChild = {}

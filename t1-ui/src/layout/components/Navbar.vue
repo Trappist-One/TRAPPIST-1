@@ -45,7 +45,7 @@
   import Screenfull from '@/components/Screenfull'
   import SizeSelect from '@/components/SizeSelect'
   import Search from '@/components/HeaderSearch'
-  import HkGit from '@/components/Hk/Git'
+  import HkGit from '@/components/T1/Git'
 
   export default {
     components: {
