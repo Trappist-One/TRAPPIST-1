@@ -11,7 +11,7 @@
         <module>t1-auth</module>
         <module>t1-common</module>
         <module>t1-gateway</module>
-        <module>t1-biz</module>
+        <module>t1-admin-sys</module>
 
         <module>t1-plugins</module>
     </modules>
