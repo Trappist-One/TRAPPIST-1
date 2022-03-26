@@ -1,5 +1,5 @@
 module.exports = {
-  title: '华康集团',
+  title: 'TRAPPIST-1',
 
   /**
    * 风格配置

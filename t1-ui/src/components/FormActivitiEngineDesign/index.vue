@@ -147,7 +147,7 @@ export default {
   data() {
     return {
       //预览标题
-      title: "华康集团",
+      title: "TRAPPIST-1",
       //logo图标
       logo,
       //记录目前控件全局ID-自增长

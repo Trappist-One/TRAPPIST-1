@@ -2265,7 +2265,7 @@ CREATE TABLE `sys_dept`  (
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES (1, '100001', '华康集团', 0, '0', 1, 'admin', '15688888888', NULL, NULL, '0', 'admin', '2020-02-13 20:55:57', NULL, '2021-05-04 23:21:33', NULL, '0');
+INSERT INTO `sys_dept` VALUES (1, '100001', 'TRAPPIST-1', 0, '0', 1, 'admin', '15688888888', NULL, NULL, '0', 'admin', '2020-02-13 20:55:57', NULL, '2021-05-04 23:21:33', NULL, '0');
 INSERT INTO `sys_dept` VALUES (2, '1001', '华康广州分公司', 1, '0,1', 1, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '2021-05-04 23:21:48', NULL, '0');
 INSERT INTO `sys_dept` VALUES (3, '10000102', '华康深圳分公司', 1, '0,1', 2, '123', '', NULL, NULL, '0', NULL, NULL, 'admin', '2021-05-04 23:21:59', NULL, '0');
 
@@ -3119,13 +3119,13 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'admin', '管理员', '00', '$2a$10$N0EAFRVjSYipHK/HDqzuEuVJZBabVTD7Z.NrXrnas984.1wjkaLK.', 1, '华康集团', '111@qq.com', NULL, '15611111111', '1', '/profile/avatar/avatar1589722134317.png', '0', '', NULL, 'admin', '2020-03-13 20:56:44', '', '2021-05-04 23:21:33', '全栈工程师', '0');
+INSERT INTO `sys_user` VALUES (1, 'admin', '管理员', '00', '$2a$10$N0EAFRVjSYipHK/HDqzuEuVJZBabVTD7Z.NrXrnas984.1wjkaLK.', 1, 'TRAPPIST-1', '111@qq.com', NULL, '15611111111', '1', '/profile/avatar/avatar1589722134317.png', '0', '', NULL, 'admin', '2020-03-13 20:56:44', '', '2021-05-04 23:21:33', '全栈工程师', '0');
 INSERT INTO `sys_user` VALUES (2, 'test', '测试01', '00', '$2a$10$Yq7NRB8VO4n1AxcThlwJweM1WE8fwvFRl0krQkNihGxiCRW/Gfp/.', 1, '重庆总公司', '', NULL, '', '0', '', '0', '', NULL, 'admin', '2020-03-14 18:14:11', '', NULL, NULL, '1');
 INSERT INTO `sys_user` VALUES (7, '小猫', '小猫', '00', '$2a$10$algx6IS1lUK6sQX6OakbVOq7dXrShIr2IMrEh8JguRw7VhDy5FwBS', 1, '', '1827945911@qq.com', NULL, '13272461811', '0', '', '0', '', NULL, 'admin', '2021-04-04 17:24:07', '', '2021-04-04 17:24:17', NULL, '1');
 INSERT INTO `sys_user` VALUES (8, '小可爱', '小可爱', '00', '$2a$10$/ofeR7BxtYaRkmuU6S4Jq.lJ.lLUTN3UPYULqbhcYiOkcQcUQur3q', 1, '', '1827945911@qq.com', NULL, '13272461811', '0', '', '0', '', NULL, 'admin', '2021-04-04 17:25:02', '', NULL, NULL, '1');
 INSERT INTO `sys_user` VALUES (9, '小狗', '小狗', '00', '$2a$10$W3qfJHogHT3NHtLbasw6gO9iNADkJWsrbczvgNb8H09rhLXAzGA5i', 1, '', '1827945911@qq.com', NULL, '13272461811', '0', '', '0', '', NULL, 'admin', '2021-04-04 17:27:49', '', NULL, NULL, '1');
 INSERT INTO `sys_user` VALUES (10, '小猪', '小猪', '00', '$2a$10$iLAi75SNyPu5BPFhHk6Os.QyCdl7EqrOpHIOgPlmr3f89EHFK/pRi', 1, '', '1827945911@qq.com', NULL, '13272461811', '0', '', '0', '', NULL, 'admin', '2021-04-04 17:28:34', '', NULL, NULL, '1');
-INSERT INTO `sys_user` VALUES (11, 'xuke', '不太冷', '00', '$2a$10$pEaKf2aaxXgaTWXCVADJteUkT6Gk5W0Cn9f7eyqn1iuD9JvWakFa2', 1, '华康集团', '136@qq.com', NULL, '13631255222', '0', '', '0', '', NULL, NULL, '2021-05-04 21:32:00', '', '2021-05-04 23:21:33', '测试', '1');
+INSERT INTO `sys_user` VALUES (11, 'xuke', '不太冷', '00', '$2a$10$pEaKf2aaxXgaTWXCVADJteUkT6Gk5W0Cn9f7eyqn1iuD9JvWakFa2', 1, 'TRAPPIST-1', '136@qq.com', NULL, '13631255222', '0', '', '0', '', NULL, NULL, '2021-05-04 21:32:00', '', '2021-05-04 23:21:33', '测试', '1');
 
 -- ----------------------------
 -- Table structure for sys_user_role

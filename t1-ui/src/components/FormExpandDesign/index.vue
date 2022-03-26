@@ -183,7 +183,7 @@ export default {
   data() {
     return {
       //预览标题
-      title: "华康集团",
+      title: "TRAPPIST-1",
       //增改标识[0:新增,1:修改]
       option: 0,
       //logo图标

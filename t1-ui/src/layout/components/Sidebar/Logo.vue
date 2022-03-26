@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      title: '华康集团',
+      title: 'TRAPPIST-1',
       logo: logoImg
     }
   }
