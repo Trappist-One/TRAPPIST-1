@@ -31,10 +31,7 @@
             <groupId>com.pig4cloud.plugin</groupId>
             <artifactId>spring-cloud-stater-druid-monitor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-config</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>

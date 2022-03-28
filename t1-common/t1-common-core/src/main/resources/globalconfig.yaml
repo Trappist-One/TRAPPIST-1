@@ -1,0 +1,7 @@
+t1:
+  addressSwitch: true # 获取ip地址开关
+  lang: zh_CN
+  name: TRAPPIST-1开发平台
+  profile: profile/
+  redisSwitch: true # redis开关
+  version: 1.0.0

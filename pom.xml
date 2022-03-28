@@ -181,11 +181,6 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.t1</groupId>
-                <artifactId>t1-config</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt.version}</version>

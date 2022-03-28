@@ -13,10 +13,7 @@
     <description>搜索中心服务端</description>
     <dependencies>
         <!-- 公共实体类模块 -->
-        <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-config</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>com.t1</groupId>

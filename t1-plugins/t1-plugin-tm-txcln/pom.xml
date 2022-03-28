@@ -14,16 +14,6 @@
     <dependencies>
         <dependency>
             <groupId>com.t1</groupId>
-            <artifactId>t1-config</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba.cloud</groupId>
-                    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.t1</groupId>
             <artifactId>t1-common-log</artifactId>
             <exclusions>
                 <exclusion>

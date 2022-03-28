@@ -12,10 +12,7 @@
     <artifactId>t1-auth</artifactId>
     <description>认证中心</description>
     <dependencies>
-        <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-config</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.t1</groupId>
             <artifactId>t1-common-tenant</artifactId>
@@ -47,6 +44,11 @@
         <dependency>
             <groupId>com.t1</groupId>
             <artifactId>t1-common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
         <dependency>
