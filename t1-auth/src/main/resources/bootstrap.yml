@@ -6,6 +6,8 @@ server:
         name: OAUTH2SESSION
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: t1-auth-server
   cloud:
