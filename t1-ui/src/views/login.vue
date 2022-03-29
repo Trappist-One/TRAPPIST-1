@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="el-login-header">
-      <a href="http://www.hkbxdl.net/home.html">进入官网</a>
+      <a href="https://cn.bing.com/">进入官网</a>
     </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">TRAPPIST-1</h3>
