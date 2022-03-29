@@ -21,10 +21,6 @@ spring:
           group: DEV
           refresh: true
         shared-configs[1]:
-          data-id: globalconfig.yaml
-          group: DEV
-          refresh: true
-        shared-configs[2]:
           data-id: sys.yaml
           group: DEV
           refresh: true
