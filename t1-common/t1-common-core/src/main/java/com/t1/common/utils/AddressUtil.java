@@ -37,7 +37,7 @@ public class AddressUtil {
         } catch (Exception e) {
             log.error("获取地址信息异常：{}", e.getLocalizedMessage());
         }
-        return "XX XX";
+        return "unknown";
     }
 
     public static void main(String[] args) {

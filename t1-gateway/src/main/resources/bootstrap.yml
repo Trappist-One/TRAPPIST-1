@@ -2,6 +2,8 @@ server:
   port: 9000
   host: localhost
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: t1-gateway
   cloud:
@@ -19,10 +21,6 @@ spring:
           group: DEV
           refresh: true
         shared-configs[1]:
-          data-id: globalconfig.yaml
-          group: DEV
-          refresh: true
-        shared-configs[2]:
           data-id: gateway.yaml
           group: DEV
           refresh: true
