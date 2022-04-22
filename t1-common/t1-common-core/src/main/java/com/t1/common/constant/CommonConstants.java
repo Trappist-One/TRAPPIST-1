@@ -164,7 +164,7 @@ public interface CommonConstants {
     /**
      * 负载均衡策略-版本号 信息头
      */
-    String Z_L_T_VERSION = "z-l-t-version";
+    String T1_VERSION = "t1-version";
     /**
      * 注册中心元数据 版本号
      */

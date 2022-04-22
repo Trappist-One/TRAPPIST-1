@@ -35,7 +35,7 @@ public class LbIsolationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws IOException, ServletException {
         try {
-            String version = request.getHeader(CommonConstants.Z_L_T_VERSION);
+            String version = request.getHeader(CommonConstants.T1_VERSION);
             if(StrUtil.isNotEmpty(version)){
                 LbIsolationContextHolder.setVersion(version);
             }

@@ -32,7 +32,7 @@ public class LbIsolationFilter extends LoadBalancerClientFilter {
 
     @Override
     protected ServiceInstance choose(ServerWebExchange exchange) {
-        String vresion = exchange.getRequest().getHeaders().getFirst(CommonConstants.Z_L_T_VERSION);
+        String vresion = exchange.getRequest().getHeaders().getFirst(CommonConstants.T1_VERSION);
         if (StrUtil.isNotEmpty(vresion)) {
             if (this.loadBalancer instanceof RibbonLoadBalancerClient) {
                 RibbonLoadBalancerClient client = (RibbonLoadBalancerClient) this.loadBalancer;
