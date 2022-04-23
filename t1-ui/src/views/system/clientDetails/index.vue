@@ -69,6 +69,8 @@
       <el-table-column label="令牌时效(s)" prop="accessTokenValidity"/>
       <el-table-column label="刷新时效(s)" prop="refreshTokenValidity"/>
       <el-table-column label="自动放行" prop="autoapprove"/>
+      <el-table-column label="支持ID令牌" prop="supportIdToken"/>
+      <el-table-column label="ID时效(s)" prop="idTokenValiditySeconds"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -122,6 +124,12 @@
         </el-form-item>
         <el-form-item label="刷新时效" prop="refreshTokenValidity">
           <el-input-number v-model="form.refreshTokenValidity" controls-position="right" :min="0"/>
+        </el-form-item>
+        <el-form-item label="支持ID令牌" prop="supportIdToken">
+          <el-input-number v-model="form.supportIdToken"/>
+        </el-form-item>
+        <el-form-item label="ID时效(s)" prop="idTokenValiditySeconds">
+          <el-input-number v-model="form.idTokenValiditySeconds" controls-position="right" :min="0"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -226,7 +234,9 @@
           authorizedGrantTypes: 'password,refresh_token',
           accessTokenValidity: undefined,
           refreshTokenValidity: undefined,
-          autoapprove: 'true'
+          autoapprove: 'true',
+          supportIdToken: undefined,
+          idTokenValiditySeconds: undefined
         };
         this.resetForm("form");
       },
