@@ -37,7 +37,7 @@ public class DefaultAsycTaskConfig {
     /**
      *  线程池前缀
      */
-    @Value("${asyc-task.threadNamePrefix:HkExecutor-}")
+    @Value("${asyc-task.threadNamePrefix:T1Executor-}")
     private String threadNamePrefix;
 
     @Bean
