@@ -1,6 +1,7 @@
 package com.t1.oauth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.t1.common.constant.SecurityConstants;
 import com.t1.common.lock.DistributedLock;
@@ -68,6 +69,14 @@ public class ClientServiceImpl extends SuperServiceImpl<ClientMapper, Client> im
         baseMapper.deleteById(id);
         redisRepository.del(clientRedisKey(clientId));
     }
+
+    @Override
+    public Client loadClientByClientId(String clientId) {
+        QueryWrapper<Client> wrapper = Wrappers.query();
+        wrapper.eq("client_id", clientId);
+        return this.getOne(wrapper);
+    }
+
 
     private String clientRedisKey(String clientId) {
         return SecurityConstants.CACHE_CLIENT_KEY + ":" + clientId;
