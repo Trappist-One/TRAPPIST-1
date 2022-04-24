@@ -13,7 +13,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  */
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "zlt.oauth2.token.store")
+@ConfigurationProperties(prefix = "t1.oauth2.token.store")
 @RefreshScope
 public class TokenStoreProperties {
     /**

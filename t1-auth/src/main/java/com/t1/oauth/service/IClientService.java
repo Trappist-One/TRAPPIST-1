@@ -10,8 +10,6 @@ import java.util.Map;
 /**
  * @author Bruce Lee(copy)
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public interface IClientService extends ISuperService<Client> {
     R saveClient(Client clientDto) throws Exception;

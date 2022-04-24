@@ -18,8 +18,6 @@ import java.util.Map;
  * @version 1.0
  * @date 2021/5/7
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class PwdEncoderUtil {
     public static PasswordEncoder getDelegatingPasswordEncoder(String encodingId) {

@@ -32,24 +32,34 @@ public class ClientDetails implements Serializable {
     private String clientId;
 
     /**
+     * 应用名称
+     */
+    private String clientName;
+
+    /**
      * 资源ids
      */
     private String resourceIds;
 
     /**
-     * 秘钥
+     * 密钥
      */
     private String clientSecret;
 
     /**
+     * 密钥(明文)
+     */
+    private String clientSecretStr;
+
+    /**
      * 域
      */
-    private String scope;
+    private String scope = "all";
 
     /**
      * 授权模式
      */
-    private String authorizedGrantTypes;
+    private String authorizedGrantTypes = "authorization_code,password,refresh_token,client_credentials";
 
     /**
      * 重定向地址
@@ -63,18 +73,27 @@ public class ClientDetails implements Serializable {
     /**
      * 令牌时效
      */
-    private Integer accessTokenValidity;
+    private Integer accessTokenValidity = 18000;
     /**
      * 刷新时效
      */
-    private Integer refreshTokenValidity;
+    private Integer refreshTokenValidity = 28800;
 
     /**
      * 附加信息
      */
-    private String additionalInformation;
+    private String additionalInformation = "{}";
     /**
-     * 自动放行
+     * 自动授权
      */
     private String autoapprove;
+
+    /**
+     * 是否支持id_token
+     */
+    private String supportIdToken;
+    /**
+     * id_token有效时间(s)
+     */
+    private Integer idTokenValidity = 60;
 }

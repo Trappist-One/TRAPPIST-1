@@ -36,8 +36,7 @@ import java.util.Map;
  * @author Bruce Lee (copy)
  * @date 2019/4/23
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
+
  */
 @Service
 public class IndexServiceImpl implements IIndexService {

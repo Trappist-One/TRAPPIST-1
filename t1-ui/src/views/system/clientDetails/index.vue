@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch">
-      <el-form-item label="应用名称" prop="clientId">
+      <el-form-item label="应用名称" prop="clientName">
         <el-input
-          v-model="queryParams.clientId"
+          v-model="queryParams.clientName"
           placeholder="请输入应用名称"
           clearable
           size="small"
@@ -62,15 +62,16 @@
 
     <el-table v-loading="loading" :data="clientDetailsList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="应用名称" prop="clientId"/>
-      <el-table-column label="秘钥" prop="clientSecret" :show-overflow-tooltip="true"/>
+      <el-table-column label="应用标识" prop="clientId"/>
+      <el-table-column label="应用名称" prop="clientName"/>
+      <el-table-column label="秘钥" prop="clientSecretStr" :show-overflow-tooltip="true"/>
       <el-table-column label="域" prop="scope"/>
       <el-table-column label="授权模式" prop="authorizedGrantTypes"/>
+      <el-table-column label="自动放行" prop="autoapprove" :formatter="autoapproveFormat"/>
       <el-table-column label="令牌时效(s)" prop="accessTokenValidity"/>
       <el-table-column label="刷新时效(s)" prop="refreshTokenValidity"/>
-      <el-table-column label="自动放行" prop="autoapprove"/>
-      <el-table-column label="支持ID令牌" prop="supportIdToken"/>
-      <el-table-column label="ID时效(s)" prop="idTokenValiditySeconds"/>
+      <el-table-column label="支持ID令牌" prop="supportIdToken" :formatter="supportIdTokenFormat"/>
+      <el-table-column label="ID时效(s)" prop="idTokenValidity"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -103,12 +104,15 @@
 
     <!-- 添加或修改终端配置对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px">
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="应用名称" prop="clientId">
-          <el-input v-model="form.clientId" placeholder="请输入应用名称"/>
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+        <el-form-item label="应用标识" prop="clientId">
+          <el-input v-model="form.clientId" placeholder="请输入应用标识"/>
         </el-form-item>
-        <el-form-item label="秘钥" prop="clientSecret">
-          <el-input v-model="form.clientSecret" placeholder="请输入秘钥"/>
+        <el-form-item label="应用名称" prop="clientName">
+          <el-input v-model="form.clientName" placeholder="请输入应用名称"/>
+        </el-form-item>
+        <el-form-item label="秘钥" prop="clientSecretStr">
+          <el-input v-model="form.clientSecretStr" placeholder="请输入秘钥"/>
         </el-form-item>
         <el-form-item label="域" prop="scope">
           <el-input v-model="form.scope" placeholder="请输入域"/>
@@ -116,8 +120,15 @@
         <el-form-item label="授权模式" prop="authorizedGrantTypes">
           <el-input v-model="form.authorizedGrantTypes" placeholder="请输入授权模式"/>
         </el-form-item>
-        <el-form-item label="自动放行" prop="autoapprove">
-          <el-input v-model="form.autoapprove" placeholder="请输入自动放行"/>
+        <el-form-item label="自动授权" prop="autoapprove">
+          <el-select v-model="form.autoapprove" placeholder="请选择是否自动授权">
+            <el-option
+              v-for="dict in sysOptions"
+              :key="dict.value"
+              :label="dict.label"
+              :value="dict.value"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="令牌时效" prop="accessTokenValidity">
           <el-input-number v-model="form.accessTokenValidity" controls-position="right" :min="0"/>
@@ -126,10 +137,17 @@
           <el-input-number v-model="form.refreshTokenValidity" controls-position="right" :min="0"/>
         </el-form-item>
         <el-form-item label="支持ID令牌" prop="supportIdToken">
-          <el-input-number v-model="form.supportIdToken"/>
+          <el-select v-model="form.supportIdToken" placeholder="请选择是否支持ID令牌">
+            <el-option
+              v-for="dict in sysOptions"
+              :key="dict.value"
+              :label="dict.label"
+              :value="dict.value"
+            />
+          </el-select>
         </el-form-item>
-        <el-form-item label="ID时效(s)" prop="idTokenValiditySeconds">
-          <el-input-number v-model="form.idTokenValiditySeconds" controls-position="right" :min="0"/>
+        <el-form-item label="ID时效(s)" prop="idTokenValidity">
+          <el-input-number v-model="form.idTokenValidity" controls-position="right" :min="0"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -180,14 +198,18 @@
         isAdd: false,
         // 显示搜索条件
         showSearch: true,
+        sysOptions: [],
         // 表单参数
         form: {},
         // 表单校验
         rules: {
           clientId: [
+            {required: true, message: "应用标识不能为空", trigger: "blur"}
+          ],
+          clientName: [
             {required: true, message: "应用名称不能为空", trigger: "blur"}
           ],
-          clientSecret: [
+          clientSecretStr: [
             {required: true, message: "秘钥不能为空", trigger: "blur"}
           ],
           scope: [
@@ -204,6 +226,9 @@
     },
     created() {
       this.getList();
+      this.getDicts("yes_no").then(response => {
+        this.sysOptions = response.data;
+      });
     },
     methods: {
       /** 查询终端列表 */
@@ -217,6 +242,12 @@
           }
         );
       },
+      supportIdTokenFormat(row, column) {
+        return this.selectDictLabel(this.sysOptions, row.supportIdToken);
+      },
+      autoapproveFormat(row, column) {
+        return this.selectDictLabel(this.sysOptions, row.autoapprove);
+      },
       // 取消按钮
       cancel() {
         this.open = false;
@@ -229,14 +260,15 @@
         }
         this.form = {
           clientId: undefined,
-          clientSecret: undefined,
+          clientName: undefined,
+          clientSecretStr: undefined,
           scope: 'server',
           authorizedGrantTypes: 'password,refresh_token',
           accessTokenValidity: undefined,
           refreshTokenValidity: undefined,
-          autoapprove: 'true',
+          autoapprove: undefined,
           supportIdToken: undefined,
-          idTokenValiditySeconds: undefined
+          idTokenValidity: undefined
         };
         this.resetForm("form");
       },

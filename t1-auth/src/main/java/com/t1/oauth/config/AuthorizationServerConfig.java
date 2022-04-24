@@ -147,10 +147,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             , KeyProperties keyProperties, IClientService clientService, User user) {
         String clientId = authentication.getOAuth2Request().getClientId();
         Client client = clientService.loadClientByClientId(clientId);
-        if (client.getSupportIdToken()) {
+        if ("0".equals(client.getSupportIdToken())) {
             String nonce = authentication.getOAuth2Request().getRequestParameters().get(IdTokenClaimNames.NONCE);
             long now = System.currentTimeMillis();
-            long expiresAt = System.currentTimeMillis() + client.getIdTokenValiditySeconds() * 1000;
+            long expiresAt = System.currentTimeMillis() + client.getIdTokenValidity() * 1000;
             String idToken = OidcIdTokenBuilder.builder(keyProperties)
                     .issuer(SecurityConstants.ISS)
                     .issuedAt(now)

@@ -28,7 +28,7 @@ public class ClientDetailsController {
     private final PasswordEncoder passwordEncoder;
 
     private QueryWrapper<ClientDetails> getQueryWrapper(ClientDetails clientDetails) {
-        return new QueryWrapper<ClientDetails>().like(StrUtil.isNotBlank(clientDetails.getClientId()), "client_id", clientDetails.getClientId());
+        return new QueryWrapper<ClientDetails>().like(StrUtil.isNotBlank(clientDetails.getClientName()), "client_name", clientDetails.getClientName());
     }
 
     @PreAuthorize("@ps.hasPerm('clientDetails_view')")
@@ -49,7 +49,7 @@ public class ClientDetailsController {
     @PostMapping("/save")
     @ResponseBody
     public R save(@RequestBody ClientDetails clientDetails) {
-        clientDetails.setClientSecret(passwordEncoder.encode(clientDetails.getClientSecret()));
+        clientDetails.setClientSecret(passwordEncoder.encode(clientDetails.getClientSecretStr()));
         clientDetailsService.save(clientDetails);
         return R.success();
     }
