@@ -1,8 +1,10 @@
 package com.t1.gateway.auth;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.t1.common.constant.SecurityConstants;
 import com.t1.common.entity.User;
+import com.t1.oauth2.common.util.AuthUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -36,6 +38,10 @@ public class Oauth2AuthSuccessHandler implements ServerAuthenticationSuccessHand
         headerValues.add(SecurityConstants.TENANT_HEADER, clientId);
         headerValues.add(SecurityConstants.ROLE_HEADER, CollectionUtil.join(authentication.getAuthorities(), ","));
 
+        String accountType = AuthUtils.getAccountType(oauth2Authentication.getUserAuthentication());
+        if (StrUtil.isNotEmpty(accountType)) {
+            headerValues.add(SecurityConstants.ACCOUNT_TYPE_HEADER, accountType);
+        }
         ServerWebExchange exchange = webFilterExchange.getExchange();
         ServerHttpRequest serverHttpRequest = exchange.getRequest().mutate()
                 .headers(h -> {
