@@ -53,7 +53,7 @@ public class DatatableController {
         StringBuilder sql = new StringBuilder();
         if (DataTypeEnum.MYSQL.getType().equals(AliasUtil.getDsType(alias))) {
             sql.append("select table_name tableName, table_comment tableComment, create_time createTime from information_schema.tables where table_schema=?")
-                    .append("and table_name not like 'oauth%' and table_name not like 'sys_%' and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_type='BASE TABLE'");
+                    .append("and table_name not like 'oauth%' and table_name not like 'sys_%' and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_name not like 'intelligent%' and table_type='BASE TABLE'");
             if (StrUtil.isNotBlank(tableName)) {
                 sql.append(" and table_name like '%" + tableName + "%'");
             }
