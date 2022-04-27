@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>TRAPPIST-1</artifactId>
+        <groupId>com.t1</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>t1-outside</artifactId>
+    <packaging>pom</packaging>
+    <name>对接第三方服务</name>
+    <modules>
+        <module>t1-outside-covid-19</module>
+    </modules>
+
+
+</project>

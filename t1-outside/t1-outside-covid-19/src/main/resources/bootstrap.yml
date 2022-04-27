@@ -1,0 +1,26 @@
+server:
+  port: 11000
+  host: localhost
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: t1-outside-covid19
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 112.74.62.174:8848
+        file-extension: yaml
+        group: local
+        namespace: local
+        username: nacos
+        password: t@nacos
+        shared-configs[0]:
+          data-id: common.yaml
+          group: LOCAL
+          refresh: true
+        shared-configs[1]:
+          data-id: covid19.yaml
+          group: LOCAL
+          refresh: true
