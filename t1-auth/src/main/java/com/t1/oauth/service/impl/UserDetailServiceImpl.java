@@ -1,5 +1,6 @@
 package com.t1.oauth.service.impl;
 
+import com.t1.common.constant.SecurityConstants;
 import com.t1.common.feign.UserService;
 import com.t1.common.model.LoginAppUser;
 import com.t1.oauth.service.T1UserDetailsService;
@@ -19,8 +20,15 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 public class UserDetailServiceImpl implements T1UserDetailsService, SocialUserDetailsService {
+    private static final String ACCOUNT_TYPE = SecurityConstants.DEF_ACCOUNT_TYPE;
+
     @Resource
     private UserService userService;
+
+    @Override
+    public boolean supports(String accountType) {
+        return ACCOUNT_TYPE.equals(accountType);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) {

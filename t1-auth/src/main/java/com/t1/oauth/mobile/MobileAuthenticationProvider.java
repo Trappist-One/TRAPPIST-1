@@ -1,7 +1,9 @@
 package com.t1.oauth.mobile;
 
 import com.t1.oauth.service.T1UserDetailsService;
+import com.t1.oauth.service.impl.UserDetailServiceFactory;
 import com.t1.oauth2.common.token.MobileAuthenticationToken;
+import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,8 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author Bruce Lee(copy)
  */
 @Setter
+@Getter
 public class MobileAuthenticationProvider implements AuthenticationProvider {
-    private T1UserDetailsService userDetailsService;
+    private UserDetailServiceFactory userDetailsServiceFactory;
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -23,12 +26,12 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
         MobileAuthenticationToken authenticationToken = (MobileAuthenticationToken) authentication;
         String mobile = (String) authenticationToken.getPrincipal();
         String password = (String) authenticationToken.getCredentials();
-        UserDetails user = userDetailsService.loadUserByMobile(mobile);
+        UserDetails user = getUserDetailsServiceFactory().getService(authentication).loadUserByMobile(mobile);
         if (user == null) {
             throw new InternalAuthenticationServiceException("手机号或密码错误");
         }
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new BadCredentialsException("手机号或密码错误");
+            throw new InternalAuthenticationServiceException("手机号或密码错误");
         }
         MobileAuthenticationToken authenticationResult = new MobileAuthenticationToken(user, password, user.getAuthorities());
         authenticationResult.setDetails(authenticationToken.getDetails());

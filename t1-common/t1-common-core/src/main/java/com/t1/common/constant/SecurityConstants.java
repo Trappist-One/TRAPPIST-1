@@ -42,6 +42,12 @@ public interface SecurityConstants {
     String TENANT_HEADER = "x-tenant-header";
 
     /**
+     * 账号类型信息头
+     */
+    String ACCOUNT_TYPE_HEADER = "x-account-type-header";
+
+
+    /**
      * 基础角色
      */
     String BASE_ROLE = "ROLE_USER";
@@ -178,4 +184,14 @@ public interface SecurityConstants {
      * 令牌颁发者
      */
     String ISS = "http://zlt2000.cn";
+
+    /**
+     * 默认账号类型
+     */
+    String DEF_ACCOUNT_TYPE = "admin";
+
+    /**
+     * 账号类型参数名
+     */
+    String ACCOUNT_TYPE_PARAM_NAME = "account_type";
 }

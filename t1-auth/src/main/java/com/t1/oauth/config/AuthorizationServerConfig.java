@@ -1,5 +1,6 @@
 package com.t1.oauth.config;
 
+import cn.hutool.core.util.StrUtil;
 import com.t1.common.constant.SecurityConstants;
 import com.t1.common.entity.User;
 import com.t1.oauth.model.Client;
@@ -8,6 +9,7 @@ import com.t1.oauth.service.impl.RedisClientDetailsService;
 import com.t1.oauth.util.OidcIdTokenBuilder;
 import com.t1.oauth2.common.constants.IdTokenClaimNames;
 import com.t1.oauth2.common.properties.TokenStoreProperties;
+import com.t1.oauth2.common.util.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
@@ -115,9 +117,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             , TokenStoreProperties tokenStoreProperties) {
         return (accessToken, authentication) -> {
             Set<String> responseTypes = authentication.getOAuth2Request().getResponseTypes();
-            if (responseTypes.contains(SecurityConstants.ID_TOKEN)
-                    || "authJwt".equals(tokenStoreProperties.getType())) {
-                Map<String, Object> additionalInfo = new HashMap<>(2);
+            Map<String, Object> additionalInfo = new HashMap<>(3);
+            String accountType = AuthUtils.getAccountType(authentication.getUserAuthentication());
+            if (StrUtil.isNotEmpty(accountType)) {
+                additionalInfo.put(SecurityConstants.ACCOUNT_TYPE_PARAM_NAME, accountType);
+            }
+
+            if (responseTypes.contains(SecurityConstants.ID_TOKEN) || "authJwt".equals(tokenStoreProperties.getType())) {
                 Object principal = authentication.getPrincipal();
                 //增加id参数
                 if (principal instanceof User) {
@@ -130,8 +136,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                         additionalInfo.put("id", user.getId());
                     }
                 }
-                ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
             }
+            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
             return accessToken;
         };
     }

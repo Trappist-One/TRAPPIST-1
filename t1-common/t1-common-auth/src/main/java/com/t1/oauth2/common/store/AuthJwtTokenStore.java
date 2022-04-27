@@ -5,6 +5,7 @@ import com.t1.oauth2.common.converter.CustomUserAuthenticationConverter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
@@ -27,6 +28,7 @@ import java.util.Map;
  * <p>
  */
 @ConditionalOnProperty(prefix = "t1.oauth2.token.store", name = "type", havingValue = "authJwt")
+@Configuration
 public class AuthJwtTokenStore {
 
     @Bean("keyProp")

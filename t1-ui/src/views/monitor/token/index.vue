@@ -17,6 +17,7 @@
       <el-table-column label="令牌" align="center" prop="tokenValue" :show-overflow-tooltip="true" />
       <el-table-column label="授权类型" align="center" prop="grantType" />
       <el-table-column label="所属应用" align="center" prop="clientId" width="100" />
+      <el-table-column label="账号类型" align="center" prop="accountType" width="100" />
       <el-table-column label="过期时间" align="center" prop="expiresIn" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
