@@ -6,15 +6,15 @@
 
     <resultMap type="Sms" id="SmsResult">
         <result property="id" column="id"/>
-        <result property="esTitle" column="es_title"/>
-        <result property="esType" column="es_type"/>
-        <result property="esReceiver" column="es_receiver"/>
-        <result property="esParam" column="es_param"/>
-        <result property="esContent" column="es_content"/>
-        <result property="esSendTime" column="es_send_time"/>
-        <result property="esSendStatus" column="es_send_status"/>
-        <result property="esSendNum" column="es_send_num"/>
-        <result property="esResult" column="es_result"/>
+        <result property="title" column="title"/>
+        <result property="type" column="type"/>
+        <result property="receiver" column="receiver"/>
+        <result property="param" column="param"/>
+        <result property="content" column="content"/>
+        <result property="sendTime" column="send_time"/>
+        <result property="sendStatus" column="send_status"/>
+        <result property="sendNum" column="send_num"/>
+        <result property="result" column="result"/>
         <result property="remark" column="remark"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>

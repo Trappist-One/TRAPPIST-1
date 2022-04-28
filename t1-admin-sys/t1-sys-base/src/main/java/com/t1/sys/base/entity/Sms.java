@@ -39,49 +39,49 @@ public class Sms extends BaseEntity {
      * 发送方式：1短信 2邮件 3微信
      */
     @Excel(name = "发送方式：1短信 2邮件 3微信")
-    private String esType;
+    private String type;
 
     /**
      * 接收人
      */
     @Excel(name = "接收人")
-    private String esReceiver;
+    private String receiver;
 
     /**
      * 发送所需参数Json格式
      */
     @Excel(name = "发送所需参数Json格式")
-    private String esParam;
+    private String param;
 
     /**
      * 推送内容
      */
     @Excel(name = "推送内容")
-    private String esContent;
+    private String content;
 
     /**
      * 推送时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "推送时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date esSendTime;
+    private Date sendTime;
 
     /**
      * 推送状态 0未推送 1推送成功 2推送失败 -1失败不再发送
      */
     @Excel(name = "推送状态 0未推送 1推送成功 2推送失败 -1失败不再发送")
-    private String esSendStatus;
+    private String sendStatus;
 
     /**
      * 发送次数 超过5次不再发送
      */
     @Excel(name = "发送次数 超过5次不再发送")
-    private Long esSendNum;
+    private Long sendNum;
 
     /**
      * 推送失败原因
      */
     @Excel(name = "推送失败原因")
-    private String esResult;
+    private String result;
 
 }

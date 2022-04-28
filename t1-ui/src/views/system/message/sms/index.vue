@@ -1,45 +1,45 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="消息标题" prop="esTitle">
+      <el-form-item label="消息标题" prop="title">
         <el-input
-          v-model="queryParams.esTitle"
+          v-model="queryParams.title"
           placeholder="请输入消息标题"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="消息类型" prop="esType">
-        <el-select v-model="queryParams.esType" placeholder="请选择消息类型：1短信 2邮件 3微信" clearable size="small">
+      <el-form-item label="消息类型" prop="type">
+        <el-select v-model="queryParams.type" placeholder="请选择消息类型：1短信 2邮件 3微信" clearable size="small">
           <el-option label="请选择字典生成" value=""/>
         </el-select>
       </el-form-item>
-      <el-form-item label="接收人" prop="esReceiver">
+      <el-form-item label="接收人" prop="receiver">
         <el-input
-          v-model="queryParams.esReceiver"
+          v-model="queryParams.receiver"
           placeholder="请输入接收人"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="推送时间" prop="esSendTime">
+      <el-form-item label="推送时间" prop="sendTime">
         <el-date-picker clearable size="small"
-                        v-model="queryParams.esSendTime"
+                        v-model="queryParams.sendTime"
                         type="date"
                         value-format="yyyy-MM-dd"
                         placeholder="选择推送时间">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="推送状态" prop="esSendStatus">
-        <el-select v-model="queryParams.esSendStatus" placeholder="请选择推送状态" clearable size="small">
+      <el-form-item label="推送状态" prop="sendStatus">
+        <el-select v-model="queryParams.sendStatus" placeholder="请选择推送状态" clearable size="small">
           <el-option label="请选择字典生成" value=""/>
         </el-select>
       </el-form-item>
-      <el-form-item label="发送次数" prop="esSendNum">
+      <el-form-item label="发送次数" prop="sendNum">
         <el-input
-          v-model="queryParams.esSendNum"
+          v-model="queryParams.sendNum"
           placeholder="请输入发送次数"
           clearable
           size="small"
@@ -80,17 +80,17 @@
     <el-table v-loading="loading" :data="sysSmsList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="ID" align="center" prop="id" width="50"/>
-      <el-table-column label="消息标题" align="center" prop="esTitle" width="200"/>
-      <el-table-column label="消息类型" align="center" prop="esType" :formatter="smsTypeFormat"/>
-      <el-table-column label="接收人" align="center" prop="esReceiver" width="200"/>
-      <el-table-column label="推送内容" align="center" :show-overflow-tooltip='true' prop="esContent" width="400"/>
-      <el-table-column label="推送时间" align="center" prop="esSendTime" width="180">
+      <el-table-column label="消息标题" align="center" prop="title" width="200"/>
+      <el-table-column label="消息类型" align="center" prop="type" :formatter="smsTypeFormat"/>
+      <el-table-column label="接收人" align="center" prop="receiver" width="200"/>
+      <el-table-column label="推送内容" align="center" :show-overflow-tooltip='true' prop="content" width="400"/>
+      <el-table-column label="推送时间" align="center" prop="sendTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.esSendTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.sendTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="推送状态" align="center" prop="esSendStatus" :formatter="sendStatusFormat"/>
-      <el-table-column label="发送次数" align="center" prop="esSendNum"/>
+      <el-table-column label="推送状态" align="center" prop="sendStatus" :formatter="sendStatusFormat"/>
+      <el-table-column label="发送次数" align="center" prop="sendNum"/>
       <el-table-column label="创建日期" align="center" prop="createTime" width="100">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
@@ -132,19 +132,19 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label="消息标题" prop="esTitle">
-              <el-input v-model="form.esTitle" disabled/>
+            <el-form-item label="消息标题" prop="title">
+              <el-input v-model="form.title" disabled/>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="消息类型" prop="esType">
-              <el-select v-model="form.esType" :formatter="smsTypeFormat" disabled>
+            <el-form-item label="消息类型" prop="type">
+              <el-select v-model="form.type" :formatter="smsTypeFormat" disabled>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="接收人" prop="esReceiver">
-              <el-input v-model="form.esReceiver" disabled/>
+            <el-form-item label="接收人" prop="receiver">
+              <el-input v-model="form.receiver" disabled/>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -153,14 +153,14 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="推送内容" prop="esContent">
-              <editor v-model="form.esContent" disabled/>
+            <el-form-item label="推送内容" prop="content">
+              <editor v-model="form.content" disabled/>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="推送时间" prop="esSendTime">
+            <el-form-item label="推送时间" prop="sendTime">
               <el-date-picker clearable size="small"
-                              v-model="form.esSendTime"
+                              v-model="form.sendTime"
                               type="date"
                               value-format="yyyy-MM-dd"
                               disabled>
@@ -169,13 +169,13 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="推送状态">
-              <el-input v-model="form.esSendStatus" :formatter="sendStatusFormat" disabled>
+              <el-input v-model="form.sendStatus" :formatter="sendStatusFormat" disabled>
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="发送次数" prop="esSendNum">
-              <el-input v-model="form.esSendNum" disabled/>
+            <el-form-item label="发送次数" prop="sendNum">
+              <el-input v-model="form.sendNum" disabled/>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -184,7 +184,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="创建日期" prop="esSendTime">
+            <el-form-item label="创建日期" prop="sendTime">
               <el-date-picker clearable size="small"
                               v-model="form.createTime"
                               type="date"
@@ -242,15 +242,15 @@ export default {
       queryParams: {
         current: 1,
         size: 10,
-        esTitle: null,
-        esType: null,
-        esReceiver: null,
-        esParam: null,
-        esContent: null,
-        esSendTime: null,
-        esSendStatus: null,
-        esSendNum: null,
-        esResult: null,
+        title: null,
+        type: null,
+        receiver: null,
+        param: null,
+        content: null,
+        sendTime: null,
+        sendStatus: null,
+        sendNum: null,
+        result: null,
         remark: null,
         createTime: null
       },
@@ -295,25 +295,25 @@ export default {
     },
     // 系统内置字典翻译
     smsTypeFormat(row, column) {
-      return this.selectDictLabel(this.smsTypes, row.esType);
+      return this.selectDictLabel(this.smsTypes, row.type);
     },
     // 字典状态字典翻译
     sendStatusFormat(row, column) {
-      return this.selectDictLabel(this.sendStatus, row.esSendStatus);
+      return this.selectDictLabel(this.sendStatus, row.sendStatus);
     },
     // 表单重置
     reset() {
       this.form = {
         id: null,
-        esTitle: null,
-        esType: null,
-        esReceiver: null,
-        esParam: null,
-        esContent: null,
-        esSendTime: null,
-        esSendStatus: "0",
-        esSendNum: null,
-        esResult: null,
+        title: null,
+        type: null,
+        receiver: null,
+        param: null,
+        content: null,
+        sendTime: null,
+        sendStatus: "0",
+        sendNum: null,
+        result: null,
         remarks: null,
         createBy: null,
         createTime: null,

@@ -35,14 +35,14 @@ public class SmsController {
     private QueryWrapper<Sms> getQueryWrapper(Sms sysSms) {
         return new QueryWrapper<Sms>()
                 .eq(StrUtil.isNotBlank(sysSms.getEsTitle()), "es_title", sysSms.getEsTitle())
-                .eq(StrUtil.isNotBlank(sysSms.getEsType()), "es_type", sysSms.getEsType())
-                .eq(StrUtil.isNotBlank(sysSms.getEsReceiver()), "es_receiver", sysSms.getEsReceiver())
-                .eq(StrUtil.isNotBlank(sysSms.getEsParam()), "es_param", sysSms.getEsParam())
-                .eq(StrUtil.isNotBlank(sysSms.getEsContent()), "es_content", sysSms.getEsContent())
-                .eq(!StrUtil.isEmptyIfStr(sysSms.getEsSendTime()), "es_send_time", sysSms.getEsSendTime())
-                .eq(StrUtil.isNotBlank(sysSms.getEsSendStatus()), "es_send_status", sysSms.getEsSendStatus())
-                .eq(!StrUtil.isEmptyIfStr(sysSms.getEsSendNum()), "es_send_num", sysSms.getEsSendNum())
-                .eq(StrUtil.isNotBlank(sysSms.getEsResult()), "es_result", sysSms.getEsResult())
+                .eq(StrUtil.isNotBlank(sysSms.getType()), "es_type", sysSms.getType())
+                .eq(StrUtil.isNotBlank(sysSms.getReceiver()), "es_receiver", sysSms.getReceiver())
+                .eq(StrUtil.isNotBlank(sysSms.getParam()), "es_param", sysSms.getParam())
+                .eq(StrUtil.isNotBlank(sysSms.getContent()), "es_content", sysSms.getContent())
+                .eq(!StrUtil.isEmptyIfStr(sysSms.getSendTime()), "es_send_time", sysSms.getSendTime())
+                .eq(StrUtil.isNotBlank(sysSms.getSendStatus()), "es_send_status", sysSms.getSendStatus())
+                .eq(!StrUtil.isEmptyIfStr(sysSms.getSendNum()), "es_send_num", sysSms.getSendNum())
+                .eq(StrUtil.isNotBlank(sysSms.getResult()), "es_result", sysSms.getResult())
                 .orderByDesc("id");
     }
 
