@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t1.sys.base.mapper.RoleMenuMapper">
+
+    <select id="findMenusByRoleIds" resultType="com.t1.common.entity.Menu">
+        select distinct t.* from sys_menu t
+        inner join sys_role_menu r on r.menu_id = t.id
+        where
+        r.role_id in
+        <foreach collection="roleIds" index="index" item="roleId"
+                 open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+        ORDER BY sort ASC
+    </select>
+</mapper>

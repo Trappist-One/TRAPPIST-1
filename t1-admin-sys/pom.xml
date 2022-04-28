@@ -12,7 +12,7 @@
     <artifactId>t1-admin-sys</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>t1-sys-rbac</module>
+        <module>t1-sys-base</module>
         <module>t1-sys-monitor</module>
         <module>t1-sys-activiti</module>
         <module>t1-sys-toolkit</module>

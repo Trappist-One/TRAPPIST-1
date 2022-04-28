@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.t1</groupId>
-            <artifactId>t1-sys-rbac</artifactId>
+            <artifactId>t1-sys-base</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

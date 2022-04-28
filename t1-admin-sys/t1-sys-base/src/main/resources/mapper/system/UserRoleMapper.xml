@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t1.sys.base.mapper.UserRoleMapper">
+
+    <select id="findRolesByUserId" resultType="com.t1.common.entity.Role">
+		select r.* from sys_role r
+		inner join sys_user_role ru on r.id = ru.role_id and ru.user_id = #{userId}
+	</select>
+</mapper>
