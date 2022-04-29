@@ -10,8 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>t1-job-core</artifactId>
 
-    <packaging>jar</packaging>
-
     <dependencies>
 
         <!-- ********************** embed server: netty + gson ********************** -->
