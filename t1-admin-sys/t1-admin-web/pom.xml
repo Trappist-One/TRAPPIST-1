@@ -37,11 +37,11 @@
             <artifactId>t1-sys-intelligent</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-sys-quartz</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.t1</groupId>-->
+<!--            <artifactId>t1-sys-quartz</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.t1</groupId>
             <artifactId>t1-common-security</artifactId>
