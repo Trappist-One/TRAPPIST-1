@@ -12,15 +12,15 @@ spring:
         enabled: true
         server-addr: 112.74.62.174:8848
         file-extension: yaml
-        group: dev
-        namespace: dev
+        group: local
+        namespace: local
         username: nacos
         password: t@nacos
         shared-configs[0]:
           data-id: common.yaml
-          group: DEV
+          group: LOCAL
           refresh: true
         shared-configs[1]:
           data-id: gateway.yaml
-          group: DEV
+          group: LOCAL
           refresh: true
