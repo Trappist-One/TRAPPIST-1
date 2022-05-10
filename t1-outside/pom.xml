@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>t1-outside</artifactId>
     <packaging>pom</packaging>
-    <name>对接第三方服务</name>
+    <description>对接第三方服务</description>
     <modules>
         <module>t1-outside-covid-19</module>
     </modules>
