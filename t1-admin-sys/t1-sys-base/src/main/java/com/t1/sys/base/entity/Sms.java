@@ -33,7 +33,7 @@ public class Sms extends BaseEntity {
      * 消息标题
      */
     @Excel(name = "消息标题")
-    private String esTitle;
+    private String title;
 
     /**
      * 发送方式：1短信 2邮件 3微信
