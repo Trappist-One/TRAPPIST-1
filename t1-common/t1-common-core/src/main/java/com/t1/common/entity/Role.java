@@ -11,8 +11,7 @@ import lombok.experimental.Accessors;
 import java.util.List;
 
 /**
- * <p>
- * 角色信息表
+ * <p>* 角色信息表
  * </p>
  *
  * @author Bruce Lee ( copy )

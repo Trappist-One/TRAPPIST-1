@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @version 创建时间：2017年11月12日 上午22:57:51
  * 类说明
  * 将oauth_client_details表数据缓存到redis，这里做个缓存优化
@@ -101,7 +101,7 @@ public class RedisClientDetailsService extends JdbcClientDetailsService {
             return;
         }
 
-        list.parallelStream().forEach(client -> redisTemplate.opsForValue().set(clientRedisKey(client.getClientId()), client));
+        list.forEach(client -> redisTemplate.opsForValue().set(clientRedisKey(client.getClientId()), client));
     }
 
     private String clientRedisKey(String clientId) {

@@ -19,16 +19,12 @@
             <artifactId>t1-common-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-common-log</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

@@ -21,7 +21,7 @@ import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.cluster.metadata.AliasMetadata;
 import org.elasticsearch.cluster.metadata.MappingMetadata;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.xcontent.XContentType;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -36,7 +36,6 @@ import java.util.Map;
  * @author Bruce Lee (copy)
  * @date 2019/4/23
  * <p>
-
  */
 @Service
 public class IndexServiceImpl implements IIndexService {

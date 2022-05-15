@@ -37,4 +37,9 @@ public class SearchDto implements Serializable {
      * es的路由
      */
     private String routing;
+
+    /**
+     * 排序顺序
+     */
+    private String sortOrder = "DESC";
 }

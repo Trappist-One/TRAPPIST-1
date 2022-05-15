@@ -38,7 +38,6 @@ import java.util.Map;
  * @author Bruce Lee (copy)
  * @date 2019/5/7
  * <p>
-
  */
 @Service
 public class AggregationServiceImpl implements IAggregationService {

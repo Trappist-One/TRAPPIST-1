@@ -2,6 +2,8 @@ package com.t1.oauth.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.security.SocialUserDetails;
 
 /**
  * @author Bruce Lee(copy)
@@ -22,4 +24,6 @@ public interface T1UserDetailsService extends UserDetailsService {
      * @return
      */
     UserDetails loadUserByMobile(String mobile);
+
+    SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException;
 }

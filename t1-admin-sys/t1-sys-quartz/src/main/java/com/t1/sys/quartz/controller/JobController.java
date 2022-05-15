@@ -150,9 +150,9 @@ public class JobController {
     @PreAuthorize("@ps.hasPerm('job_stop')")
     public R stopJobs() {
         taskUtil.pauseJobs(scheduler);
-        int count = jobService.count(new LambdaQueryWrapper<Job>()
+        long count = jobService.count(new LambdaQueryWrapper<Job>()
                 .eq(Job::getJobStatus, T1QuartzEnum.JOB_STATUS_RUNNING.getType()));
-        if (count <= 0) {
+        if (count <= 0L) {
             return R.success("无正在运行定时任务");
         } else {
             //更新定时任务状态条件，运行状态2更新为暂停状态2

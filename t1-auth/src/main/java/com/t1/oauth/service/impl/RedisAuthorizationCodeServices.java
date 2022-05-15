@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * JdbcAuthorizationCodeServices替换
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * <p>
  */
 @Service

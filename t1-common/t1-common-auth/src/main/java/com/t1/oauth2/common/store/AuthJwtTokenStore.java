@@ -31,13 +31,9 @@ import java.util.Map;
 @Configuration
 public class AuthJwtTokenStore {
 
-    @Bean("keyProp")
-    public KeyProperties keyProperties() {
-        return new KeyProperties();
-    }
-
-    @Resource(name = "keyProp")
+    @Resource
     private KeyProperties keyProperties;
+
 
     @Bean
     public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {

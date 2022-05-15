@@ -1,6 +1,7 @@
 package com.t1.oauth2.common.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.t1.common.constant.CommonConstants;
 import com.t1.common.context.TenantContextHolder;
 import com.t1.common.entity.Menu;
@@ -27,11 +28,10 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public abstract class DefaultPermissionServiceImpl {
-
     @Autowired
     private SecurityProperties securityProperties;
 
-    private AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private final AntPathMatcher antPathMatcher = new AntPathMatcher();
 
     /**
      * 查询当前用户拥有的资源权限

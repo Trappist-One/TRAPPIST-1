@@ -116,12 +116,12 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                         column.setHtmlType(GenConstants.HTML_INPUT);
 
                         // 如果是浮点型
-                        String[] str = StrUtil.split(StrUtil.subBetween(column.getColumnType(), "(", ")"), ",");
-                        if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0) {
+                        List<String> str = StrUtil.split(StrUtil.subBetween(column.getColumnType(), "(", ")"), ",");
+                        if (str != null && str.size() == 2 && Integer.parseInt(str.get(1) )> 0) {
                             column.setJavaType(GenConstants.TYPE_DOUBLE);
                         }
                         // 如果是整形
-                        else if (str != null && str.length == 1 && Integer.parseInt(str[0]) <= 11) {
+                        else if (str != null && str.size() == 1 && Integer.parseInt(str.get(0)) <= 11) {
                             column.setJavaType(GenConstants.TYPE_INTEGER);
                         }
                         // 长整形

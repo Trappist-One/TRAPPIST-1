@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * 菜单权限表
+ * <p>* 菜单权限表
  * </p>
  *
  * @author Bruce Lee ( copy )

@@ -4,7 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import com.t1.gateway.utils.ReactiveAddrUtil;
 import com.t1.log.monitor.PointUtil;
 import eu.bitwalker.useragentutils.UserAgent;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -18,7 +17,7 @@ import java.util.Map;
 /**
  * 请求统计分析埋点过滤器
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2019/10/7
  * <p>
  */
@@ -28,7 +27,7 @@ public class RequestStatisticsFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         Map<String, String> headers = request.getHeaders().toSingleValueMap();
-        UserAgent userAgent = UserAgent.parseUserAgentString(headers.get("user-agent"));
+        UserAgent userAgent = UserAgent.parseUserAgentString(headers.get("User-Agent"));
         //埋点
         PointUtil.debug("1", "request-statistics",
                 "ip=" + ReactiveAddrUtil.getRemoteAddr(request)
@@ -45,13 +44,13 @@ public class RequestStatisticsFilter implements GlobalFilter, Ordered {
 
     private String getBrowser(String browser) {
         if (StrUtil.isNotEmpty(browser)) {
-            if (StringUtils.containsIgnoreCase(browser, "CHROME")) {
+            if (browser.contains("CHROME")) {
                 return "CHROME";
-            } else if (StringUtils.containsIgnoreCase(browser, "FIREFOX")) {
+            } else if (browser.contains("FIREFOX")) {
                 return "FIREFOX";
-            } else if (StringUtils.containsIgnoreCase(browser, "SAFARI")) {
+            } else if (browser.contains("SAFARI")) {
                 return "SAFARI";
-            } else if (StringUtils.containsIgnoreCase(browser, "EDGE")) {
+            } else if (browser.contains("EDGE")) {
                 return "EDGE";
             }
         }

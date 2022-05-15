@@ -1,5 +1,7 @@
 package com.t1.oauth.service.impl;
 
+import com.t1.common.constant.SecurityConstants;
+import com.t1.oauth2.common.properties.AuthProperties;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -24,14 +26,13 @@ import java.util.UUID;
 /**
  * 重写 DefaultTokenServices，实现登录同应用同账号互踢
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2021/1/28
  * <p>
  */
 public class CustomTokenServices extends DefaultTokenServices {
     private TokenStore tokenStore;
     private TokenEnhancer accessTokenEnhancer;
-
     private AuthenticationManager authenticationManager;
     private boolean supportRefreshToken = false;
     private boolean reuseRefreshToken = true;
@@ -39,10 +40,10 @@ public class CustomTokenServices extends DefaultTokenServices {
     /**
      * 是否登录同应用同账号互踢
      */
-    private boolean isSingleLogin;
+    private final AuthProperties authProperties;
 
-    public CustomTokenServices(boolean isSingleLogin) {
-        this.isSingleLogin = isSingleLogin;
+    public CustomTokenServices(AuthProperties auth) {
+        this.authProperties = auth;
     }
 
     @Override
@@ -51,7 +52,7 @@ public class CustomTokenServices extends DefaultTokenServices {
         OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication);
         OAuth2RefreshToken refreshToken = null;
         if (existingAccessToken != null) {
-            if (isSingleLogin) {
+            if (authProperties.getIsSingleLogin()) {
                 if (existingAccessToken.getRefreshToken() != null) {
                     tokenStore.removeRefreshToken(existingAccessToken.getRefreshToken());
                 }
@@ -65,8 +66,9 @@ public class CustomTokenServices extends DefaultTokenServices {
                     tokenStore.removeRefreshToken(refreshToken);
                 }
                 tokenStore.removeAccessToken(existingAccessToken);
-            }
-            else {
+            } else if (authProperties.getIsShareToken()) {
+                // oidc每次授权都刷新id_token
+                existingAccessToken = refreshIdToken(existingAccessToken, authentication);
                 // Re-store the access token in case the authentication has changed
                 tokenStore.storeAccessToken(existingAccessToken, authentication);
                 return existingAccessToken;
@@ -99,6 +101,19 @@ public class CustomTokenServices extends DefaultTokenServices {
         }
         return accessToken;
 
+    }
+
+    /**
+     * oidc每次授权都刷新id_token
+     * @param token 已存在的token
+     * @param authentication 认证信息
+     */
+    private OAuth2AccessToken refreshIdToken(OAuth2AccessToken token, OAuth2Authentication authentication) {
+        Set<String> responseTypes = authentication.getOAuth2Request().getResponseTypes();
+        if (accessTokenEnhancer != null && responseTypes.contains(SecurityConstants.ID_TOKEN)) {
+            return accessTokenEnhancer.enhance(token, authentication);
+        }
+        return token;
     }
 
     private OAuth2RefreshToken createRefreshToken(OAuth2Authentication authentication) {
@@ -198,7 +213,6 @@ public class CustomTokenServices extends DefaultTokenServices {
         narrowed = new OAuth2Authentication(clientAuth, authentication.getUserAuthentication());
         return narrowed;
     }
-
 
     @Override
     public void setTokenStore(TokenStore tokenStore) {

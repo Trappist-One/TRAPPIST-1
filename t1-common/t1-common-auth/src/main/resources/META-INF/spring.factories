@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.t1.oauth2.common.config.AuthClientAutoConfiguration
+com.t1.oauth2.common.AuthClientAutoConfiguration

@@ -30,8 +30,7 @@ public class T1AuthenticationFailureEvenHandler extends AbstractAuthenticationFa
 
     /**
      * 处理登录失败方法
-     * <p>
-     *
+     * <p>    *
      * @param authenticationException 登录的authentication 对象
      * @param authentication          登录的authenticationException 对象
      * @param request                 请求

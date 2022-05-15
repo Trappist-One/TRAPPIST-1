@@ -13,10 +13,12 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableFeignClients("com.t1")
 @EnableFeignInterceptor
 @EnableDiscoveryClient
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
 @SpringBootApplication
 public class AuthServerApp {
 	public static void main(String[] args) {
-		SpringApplication.run(AuthServerApp.class, args);
+		SpringApplication application = new SpringApplication(AuthServerApp.class);
+		application.setEnvironmentPrefix("t1-auth");
+		application.run(args);
 	}
 }

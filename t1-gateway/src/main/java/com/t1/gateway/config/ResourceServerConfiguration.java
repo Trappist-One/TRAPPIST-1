@@ -18,7 +18,7 @@ import org.springframework.security.web.server.authentication.ServerAuthenticati
 /**
  * 资源服务器配置
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2019/10/5
  * <p>
  */

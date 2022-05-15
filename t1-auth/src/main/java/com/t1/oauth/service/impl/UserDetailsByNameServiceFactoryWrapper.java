@@ -14,13 +14,11 @@ import org.springframework.util.Assert;
 /**
  * 重写 UserDetailsByNameServiceWrapper 支持多帐户类型
  *
- * @author zlt
+ * @author Bruce Lee (Copy)
  * @version 1.0
  * @date 2021/7/24
  * @see UserDetailsByNameServiceWrapper
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 public class UserDetailsByNameServiceFactoryWrapper <T extends Authentication> implements
         AuthenticationUserDetailsService<T>, InitializingBean {

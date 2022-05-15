@@ -1,6 +1,7 @@
 package com.t1.oauth.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import com.t1.common.constant.SecurityConstants;
 import com.t1.common.feign.UserService;
 import com.t1.common.model.R;
@@ -9,14 +10,13 @@ import com.t1.redis.template.RedisRepository;
 import com.t1.oauth.exception.ValidateCodeException;
 import com.t1.oauth.service.IValidateCodeService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2018/12/10
  * <p>
  */
@@ -42,8 +42,7 @@ public class ValidateCodeServiceImpl implements IValidateCodeService {
 
     /**
      * 发送验证码
-     * <p>
-     * 1. 先去redis 查询是否 60S内已经发送
+     * <p>    * 1. 先去redis 查询是否 60S内已经发送
      * 2. 未发送： 判断手机号是否存 ? false :产生4位数字  手机号-验证码
      * 3. 发往消息中心-》发送信息
      * 4. 保存redis
@@ -94,11 +93,11 @@ public class ValidateCodeServiceImpl implements IValidateCodeService {
      */
     @Override
     public void validate(String deviceId, String validCode) {
-        if (StringUtils.isBlank(deviceId)) {
+        if (StrUtil.isBlank(deviceId)) {
             throw new ValidateCodeException("请在请求参数中携带deviceId参数");
         }
         String code = this.getCode(deviceId);
-        if (StringUtils.isBlank(validCode)) {
+        if (StrUtil.isBlank(validCode)) {
             throw new ValidateCodeException("请填写验证码");
         }
 
@@ -106,7 +105,7 @@ public class ValidateCodeServiceImpl implements IValidateCodeService {
             throw new ValidateCodeException("验证码不存在或已过期");
         }
 
-        if (!StringUtils.equals(code, validCode.toLowerCase())) {
+        if (!StrUtil.equals(code, validCode.toLowerCase())) {
             throw new ValidateCodeException("验证码不正确");
         }
 

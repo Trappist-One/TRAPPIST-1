@@ -28,11 +28,10 @@ public class RestTemplateAutoConfigure {
     @Autowired
     private RestTemplateProperties restTemplateProperties;
 
-    @LoadBalanced
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplate(ClientHttpRequestFactory httpRequestFactory) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(httpRequestFactory());
+        restTemplate.setRequestFactory(httpRequestFactory);
         return restTemplate;
     }
 
@@ -40,8 +39,8 @@ public class RestTemplateAutoConfigure {
      * httpclient 实现的ClientHttpRequestFactory
      */
     @Bean
-    public ClientHttpRequestFactory httpRequestFactory() {
-        return new HttpComponentsClientHttpRequestFactory(httpClient());
+    public ClientHttpRequestFactory httpRequestFactory(HttpClient httpClient) {
+        return new HttpComponentsClientHttpRequestFactory(httpClient);
     }
 
     /**

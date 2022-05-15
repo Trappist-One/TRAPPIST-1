@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 替换 UsernamePasswordAuthenticationFilter 增加租户id
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2020/6/10
- * <p>
+  * <p>
  */
 @Setter
 public class TenantUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {

@@ -1,12 +1,10 @@
 package com.t1.oauth.mobile;
 
-import com.t1.oauth.service.T1UserDetailsService;
 import com.t1.oauth.service.impl.UserDetailServiceFactory;
 import com.t1.oauth2.common.token.MobileAuthenticationToken;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +24,7 @@ public class MobileAuthenticationProvider implements AuthenticationProvider {
         MobileAuthenticationToken authenticationToken = (MobileAuthenticationToken) authentication;
         String mobile = (String) authenticationToken.getPrincipal();
         String password = (String) authenticationToken.getCredentials();
-        UserDetails user = getUserDetailsServiceFactory().getService(authentication).loadUserByMobile(mobile);
+        UserDetails user = userDetailsServiceFactory.getService(authenticationToken).loadUserByMobile(mobile);
         if (user == null) {
             throw new InternalAuthenticationServiceException("手机号或密码错误");
         }

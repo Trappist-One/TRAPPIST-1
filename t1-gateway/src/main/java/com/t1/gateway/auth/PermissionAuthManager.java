@@ -1,7 +1,7 @@
 package com.t1.gateway.auth;
 
 import com.t1.common.entity.Menu;
-import com.t1.gateway.feign.MenuService;
+import com.t1.gateway.feign.AsynMenuService;
 import com.t1.oauth2.common.service.impl.DefaultPermissionServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -14,12 +14,14 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * url权限认证
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2019/10/6
  * <p>
  */
@@ -27,7 +29,7 @@ import java.util.List;
 @Component
 public class PermissionAuthManager extends DefaultPermissionServiceImpl implements ReactiveAuthorizationManager<AuthorizationContext> {
     @Resource
-    private MenuService menuService;
+    private AsynMenuService asynMenuService;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> authentication, AuthorizationContext authorizationContext) {
@@ -41,6 +43,12 @@ public class PermissionAuthManager extends DefaultPermissionServiceImpl implemen
 
     @Override
     public List<Menu> findMenuByRoleCodes(String roleCodes) {
-        return menuService.findByRoleCodes(roleCodes);
+        Future<List<Menu>> futureResult = asynMenuService.findByRoleCodes(roleCodes);
+        try {
+            return futureResult.get();
+        } catch (Exception e) {
+            log.error("asynMenuService.findMenuByRoleCodes-error", e);
+        }
+        return Collections.emptyList();
     }
 }

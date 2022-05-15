@@ -6,6 +6,7 @@ import com.t1.common.entity.User;
 import com.t1.oauth.model.Client;
 import com.t1.oauth.service.IClientService;
 import com.t1.oauth.service.impl.RedisClientDetailsService;
+import com.t1.oauth.service.impl.UserDetailServiceFactory;
 import com.t1.oauth.util.OidcIdTokenBuilder;
 import com.t1.oauth2.common.constants.IdTokenClaimNames;
 import com.t1.oauth2.common.properties.TokenStoreProperties;
@@ -17,7 +18,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -39,7 +39,7 @@ import java.util.Set;
 /**
  * OAuth2 授权服务器配置
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2018/10/24
  * <p>
  */
@@ -54,7 +54,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Resource
-    private UserDetailsService userDetailsService;
+    private UserDetailServiceFactory userDetailsServiceFactory;
 
     @Autowired
     private TokenStore tokenStore;
@@ -79,7 +79,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
+                //.userDetailsService(userDetailsServiceFactory.getService(SecurityConstants.DEF_ACCOUNT_TYPE))
                 .authorizationCodeServices(authorizationCodeServices)
                 .exceptionTranslator(webResponseExceptionTranslator)
                 .tokenGranter(tokenGranter);
@@ -113,8 +113,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     @Order(1)
     public TokenEnhancer tokenEnhancer(@Autowired(required = false) KeyProperties keyProperties
-            , IClientService clientService
-            , TokenStoreProperties tokenStoreProperties) {
+                , IClientService clientService
+                , TokenStoreProperties tokenStoreProperties) {
         return (accessToken, authentication) -> {
             Set<String> responseTypes = authentication.getOAuth2Request().getResponseTypes();
             Map<String, Object> additionalInfo = new HashMap<>(3);
@@ -123,7 +123,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 additionalInfo.put(SecurityConstants.ACCOUNT_TYPE_PARAM_NAME, accountType);
             }
 
-            if (responseTypes.contains(SecurityConstants.ID_TOKEN) || "authJwt".equals(tokenStoreProperties.getType())) {
+            if (responseTypes.contains(SecurityConstants.ID_TOKEN)
+                    || "authJwt".equals(tokenStoreProperties.getType())) {
                 Object principal = authentication.getPrincipal();
                 //增加id参数
                 if (principal instanceof User) {

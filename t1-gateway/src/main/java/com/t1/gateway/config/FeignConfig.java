@@ -17,7 +17,7 @@ import java.util.List;
  * Feign配置类
  * 配置Feign的Decoder解决在Gateway中使用Feign时报错找不到HttpMessageConverters
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2020/7/26
  * <p>
  */

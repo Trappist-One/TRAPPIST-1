@@ -1,6 +1,6 @@
 package com.t1.sys.monitor.entity;
 
-import cn.hutool.core.date.BetweenFormater;
+import cn.hutool.core.date.BetweenFormatter;
 import cn.hutool.core.util.NumberUtil;
 import com.t1.common.utils.DateUtil;
 
@@ -101,6 +101,6 @@ public class Jvm {
      * JDK运行时间
      */
     public String getRunTime() {
-        return DateUtil.formatBetween(DateUtil.getServerStartDate(), DateUtil.date(), BetweenFormater.Level.MINUTE);
+        return DateUtil.formatBetween(DateUtil.getServerStartDate(), DateUtil.date(), BetweenFormatter.Level.MINUTE);
     }
 }

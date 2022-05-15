@@ -20,7 +20,6 @@ public class MobileAuthenticationSecurityConfig extends SecurityConfigurerAdapte
     @Resource
     private UserDetailServiceFactory userDetailsServiceFactory;
 
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 

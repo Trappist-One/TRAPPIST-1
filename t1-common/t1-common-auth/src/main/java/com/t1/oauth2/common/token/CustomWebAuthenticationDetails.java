@@ -7,11 +7,10 @@ import java.io.Serializable;
 /**
  * 表单登录的认证信息对象
  *
- * @author zlt
+ * @author Bruce Lee (Copy)
  * @version 1.0
  * @date 2021/7/24
- * <p>
- * @author Bruce Lee(copy)
+ * <p>* @author Bruce Lee(copy)
  */
 @Getter
 public class CustomWebAuthenticationDetails implements Serializable {

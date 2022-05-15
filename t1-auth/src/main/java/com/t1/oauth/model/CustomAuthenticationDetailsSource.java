@@ -11,12 +11,10 @@ import javax.servlet.http.HttpSession;
 /**
  * 表单登录的认证信息对象
  *
- * @author zlt
+ * @author Bruce Lee (Copy)
  * @version 1.0
  * @date 2021/7/21
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Component
 public class CustomAuthenticationDetailsSource implements AuthenticationDetailsSource<HttpServletRequest, CustomWebAuthenticationDetails> {

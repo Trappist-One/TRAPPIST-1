@@ -9,17 +9,17 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.security.SocialUserDetails;
-import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
+ * <p>
  */
 @Slf4j
 @Service
-public class UserDetailServiceImpl implements T1UserDetailsService, SocialUserDetailsService {
+public class UserDetailServiceImpl implements T1UserDetailsService {
     private static final String ACCOUNT_TYPE = SecurityConstants.DEF_ACCOUNT_TYPE;
 
     @Resource

@@ -1,6 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.t1.feign.RibbonAutoConfigure,\
-com.t1.feign.FeignAutoConfigure,\
 com.t1.feign.RestTemplateAutoConfigure,\
-com.t1.feign.filter.LbIsolationFilter,\
-com.t1.feign.LbIsolationAutoConfigure
+com.t1.feign.config.VerionIsolationAutoConfig

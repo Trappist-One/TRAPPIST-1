@@ -13,8 +13,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * <p>
- * 用户信息表
+ * <p>* 用户信息表
  * </p>
  *
  * @author Bruce Lee ( copy )

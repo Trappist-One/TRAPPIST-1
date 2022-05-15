@@ -17,8 +17,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Bruce Lee(copy)
  * @date 2018/5/29 14:16
- * <p>
- *
+ * <p>*
  * @deprecated 建议使用Redisson的实现方式 {@link RedissonDistributedLock}
  */
 @Slf4j

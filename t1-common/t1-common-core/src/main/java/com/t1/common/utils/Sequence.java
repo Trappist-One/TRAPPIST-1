@@ -82,8 +82,7 @@ public class Sequence {
     }
 
     /**
-     * <p>
-     * 有参构造器
+     * <p>    * 有参构造器
      * </p>
      *
      * @param workerId     工作机器 ID
@@ -99,8 +98,7 @@ public class Sequence {
     }
 
     /**
-     * <p>
-     * 获取 maxWorkerId
+     * <p>    * 获取 maxWorkerId
      * </p>
      */
     protected static long getMaxWorkerId(long datacenterId, long maxWorkerId) {
@@ -120,8 +118,7 @@ public class Sequence {
     }
 
     /**
-     * <p>
-     * 数据标识id部分
+     * <p>    * 数据标识id部分
      * </p>
      */
     protected static long getDatacenterId(long maxDatacenterId) {

@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * token管理服务(redis token)
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2019/7/12
  * <p>
  */
@@ -36,9 +36,9 @@ public class RedisTokensServiceImpl implements ITokensService {
 
     @Override
     public R listTokens(Map<String, Object> params, String clientId) {
-        Integer page = MapUtils.getInteger(params, "current");
-        Integer limit = MapUtils.getInteger(params, "size");
-        int[] startEnds = PageUtil.transToStartEnd(page, limit);
+        Integer page = MapUtils.getInteger(params, "page");
+        Integer limit = MapUtils.getInteger(params, "limit");
+        int[] startEnds = PageUtil.transToStartEnd(page-1, limit);
         //根据请求参数生成redis的key
         String redisKey = getRedisKey(params, clientId);
         long size = redisRepository.length(redisKey);

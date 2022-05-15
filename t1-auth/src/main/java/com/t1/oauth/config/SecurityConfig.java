@@ -4,35 +4,39 @@ import com.t1.common.config.DefaultPasswordConfig;
 import com.t1.common.constant.SecurityConstants;
 import com.t1.common.properties.TenantProperties;
 import com.t1.oauth.filter.LoginProcessSetTenantFilter;
-import com.t1.oauth.handler.OauthLogoutSuccessHandler;
 import com.t1.oauth.mobile.MobileAuthenticationSecurityConfig;
 import com.t1.oauth.openid.OpenIdAuthenticationSecurityConfig;
+import com.t1.oauth.password.PasswordAuthenticationProvider;
+import com.t1.oauth.service.impl.UserDetailServiceFactory;
 import com.t1.oauth.tenant.TenantAuthenticationSecurityConfig;
 import com.t1.oauth.tenant.TenantUsernamePasswordAuthenticationFilter;
+import com.t1.oauth2.common.token.CustomWebAuthenticationDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * spring security配置
  * 在WebSecurityConfigurerAdapter不拦截oauth要开放的资源
- *
- * @author Bruce Lee(copy)
+ * 
+ * @author Bruce Lee (Copy)
  * <p>
  */
 @Configuration
@@ -46,13 +50,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private AuthenticationEntryPoint authenticationEntryPoint;
 
 	@Resource
-	private UserDetailsService userDetailsService;
+	private UserDetailServiceFactory userDetailsServiceFactory;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Resource
-	private LogoutHandler oauthLogoutHandler;
+	private LogoutHandler logoutHandler;
+
+	@Resource
+	private LogoutSuccessHandler logoutSuccessHandler;
 
 	@Autowired
 	private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
@@ -68,6 +75,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private TenantProperties tenantProperties;
+
+	@Autowired
+	private AuthenticationDetailsSource<HttpServletRequest, CustomWebAuthenticationDetails> authenticationDetailsSource;
 
 	/**
 	 * 这一步的配置是必不可少的，否则SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
@@ -86,6 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setFilterProcessesUrl(SecurityConstants.OAUTH_LOGIN_PRO_URL);
 		filter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
 		filter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler(SecurityConstants.LOGIN_FAILURE_PAGE));
+		filter.setAuthenticationDetailsSource(authenticationDetailsSource);
 		return filter;
 	}
 
@@ -97,9 +108,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
 				.logout()
-					.logoutUrl(SecurityConstants.TOKEN_LOGOUT)
-					.logoutSuccessHandler(new OauthLogoutSuccessHandler())
-					.addLogoutHandler(oauthLogoutHandler)
+					.logoutUrl(SecurityConstants.LOGOUT_URL)
+					.logoutSuccessHandler(logoutSuccessHandler)
+					.addLogoutHandler(logoutHandler)
 					.clearAuthentication(true)
 					.and()
                 .apply(openIdAuthenticationSecurityConfig)
@@ -122,7 +133,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			http.formLogin()
 					.loginPage(SecurityConstants.LOGIN_PAGE)
 					.loginProcessingUrl(SecurityConstants.OAUTH_LOGIN_PRO_URL)
-					.successHandler(authenticationSuccessHandler);
+					.successHandler(authenticationSuccessHandler)
+					.authenticationDetailsSource(authenticationDetailsSource);
 		}
 
 
@@ -139,8 +151,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 全局用户信息
 	 */
-	@Autowired
-	public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) {
+		PasswordAuthenticationProvider provider = new PasswordAuthenticationProvider();
+		provider.setPasswordEncoder(passwordEncoder);
+		provider.setUserDetailsServiceFactory(userDetailsServiceFactory);
+		auth.authenticationProvider(provider);
 	}
+	/*public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+	}*/
 }

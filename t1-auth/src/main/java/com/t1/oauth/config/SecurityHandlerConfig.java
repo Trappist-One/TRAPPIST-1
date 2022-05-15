@@ -1,8 +1,8 @@
 package com.t1.oauth.config;
 
-import com.t1.common.constant.HttpErrorCode;
 import com.t1.oauth.exception.ValidateCodeException;
 import com.t1.oauth.handler.OauthLogoutHandler;
+import com.t1.oauth.handler.OauthLogoutSuccessHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.provider.error.DefaultWebResponseExce
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,14 +27,19 @@ import java.io.IOException;
 /**
  * 认证错误处理
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  */
 @Slf4j
 @Configuration
 public class SecurityHandlerConfig {
     @Bean
-    public OauthLogoutHandler oauthLogoutHandler() {
+    public LogoutHandler logoutHandler() {
         return new OauthLogoutHandler();
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new OauthLogoutSuccessHandler();
     }
 
     @Bean
@@ -40,27 +47,25 @@ public class SecurityHandlerConfig {
         return new DefaultWebResponseExceptionTranslator() {
             private static final String BAD_MSG = "坏的凭证";
             private static final String BAD_MSG_EN = "Bad credentials";
-            private String httpCode = "400";
+
             @Override
             public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
                 OAuth2Exception oAuth2Exception;
-                if (e.getMessage() != null && (BAD_MSG.equals(e.getMessage()) || BAD_MSG_EN.equals(e.getMessage()))) {
-                    httpCode = HttpErrorCode.ERROR_CODE_426;
+                if (e.getMessage() != null
+                        && (BAD_MSG.equals(e.getMessage()) || BAD_MSG_EN.equals(e.getMessage()))) {
                     oAuth2Exception = new InvalidGrantException("用户名或密码错误", e);
-                } else if (e instanceof InternalAuthenticationServiceException || e instanceof ValidateCodeException) {
-                    httpCode = HttpErrorCode.ERROR_CODE_428;
+                } else if (e instanceof InternalAuthenticationServiceException
+                    || e instanceof ValidateCodeException) {
                     oAuth2Exception = new InvalidGrantException(e.getMessage(), e);
                 } else if (e instanceof OAuth2Exception) {
-                    httpCode = HttpErrorCode.ERROR_CODE_DEFAULT;
                     oAuth2Exception = (OAuth2Exception)e;
                 } else {
-                    httpCode = HttpErrorCode.ERROR_CODE_DEFAULT;
                     oAuth2Exception = new UnsupportedResponseTypeException("服务内部错误", e);
                 }
                 ResponseEntity<OAuth2Exception> response = super.translate(oAuth2Exception);
                 ResponseEntity.status(oAuth2Exception.getHttpErrorCode());
-                response.getBody().addAdditionalInformation("code", httpCode);
-                response.getBody().addAdditionalInformation("msg", oAuth2Exception.getMessage());
+                response.getBody().addAdditionalInformation("resp_code", oAuth2Exception.getHttpErrorCode() + "");
+                response.getBody().addAdditionalInformation("resp_msg", oAuth2Exception.getMessage());
 
                 return response;
             }

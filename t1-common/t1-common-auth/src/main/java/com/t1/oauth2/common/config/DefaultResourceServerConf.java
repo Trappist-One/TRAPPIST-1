@@ -56,11 +56,11 @@ public class DefaultResourceServerConf extends ResourceServerConfigurerAdapter {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
-                    .httpBasic().disable()
-                    .headers()
-                    .frameOptions().disable()
+                .httpBasic().disable()
+                .headers()
+                .frameOptions().disable()
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
     }
 
     /**

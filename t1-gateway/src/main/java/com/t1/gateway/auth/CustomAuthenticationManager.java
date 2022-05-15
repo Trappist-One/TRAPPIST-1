@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.server.resource.BearerTokenAuthentica
 import reactor.core.publisher.Mono;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2019/10/6
  * <p>
  */

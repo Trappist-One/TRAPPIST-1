@@ -1,10 +1,11 @@
 package com.t1.log.trace;
 
+import cn.hutool.core.util.StrUtil;
 import com.t1.log.properties.TraceProperties;
 import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
-import org.springframework.util.StringUtils;
+import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
 
@@ -15,8 +16,9 @@ import javax.annotation.Resource;
  * @date 2021/1/28
  * <p>
  */
+@Configuration
 @ConditionalOnClass(value = {RequestInterceptor.class})
-public class FeignTraceInterceptor {
+public class FeignTraceConfig {
     @Resource
     private TraceProperties traceProperties;
 
@@ -26,8 +28,9 @@ public class FeignTraceInterceptor {
             if (traceProperties.getEnable()) {
                 //传递日志traceId
                 String traceId = MDCTraceUtils.getTraceId();
-                if (!StringUtils.isEmpty(traceId)) {
+                if (StrUtil.isNotEmpty(traceId)) {
                     template.header(MDCTraceUtils.TRACE_ID_HEADER, traceId);
+                    template.header(MDCTraceUtils.SPAN_ID_HEADER, MDCTraceUtils.getNextSpanId());
                 }
             }
         };

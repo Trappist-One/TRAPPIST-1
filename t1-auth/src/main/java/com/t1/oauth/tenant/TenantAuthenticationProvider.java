@@ -1,18 +1,18 @@
 package com.t1.oauth.tenant;
 
+import com.t1.oauth.password.PasswordAuthenticationProvider;
 import com.t1.oauth2.common.token.TenantUsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * 增加租户id，解决不同租户单点登录时角色没变化
  *
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2020/6/10
  * <p>
  */
-public class TenantAuthenticationProvider extends DaoAuthenticationProvider {
+public class TenantAuthenticationProvider extends PasswordAuthenticationProvider {
     @Override
     protected Authentication createSuccessAuthentication(Object principal,
                                                          Authentication authentication, UserDetails user) {

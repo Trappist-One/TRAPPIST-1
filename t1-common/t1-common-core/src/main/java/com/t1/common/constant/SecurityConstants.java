@@ -162,6 +162,11 @@ public interface SecurityConstants {
      * redis中授权token对应的key
      */
     String REDIS_TOKEN_AUTH = "auth:";
+
+    /**
+     * 值同access 过期时间+60
+     */
+    String ACCESS_BAK = "access_bak:";
     /**
      * redis中应用对应的token集合的key
      */

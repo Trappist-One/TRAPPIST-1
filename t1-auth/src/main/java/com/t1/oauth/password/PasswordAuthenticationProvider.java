@@ -19,12 +19,10 @@ import org.springframework.util.Assert;
 /**
  * 扩展用户名密码provider
  *
- * @author zlt
+ * @author Bruce Lee (Copy)
  * @version 1.0
  * @date 2021/7/24
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Setter
 @Getter

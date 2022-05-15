@@ -3,7 +3,7 @@ package com.t1.common.search.client.feign.fallback;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.t1.common.model.PageResult;
 import com.t1.common.search.client.feign.SearchService;
-import feign.hystrix.FallbackFactory;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**

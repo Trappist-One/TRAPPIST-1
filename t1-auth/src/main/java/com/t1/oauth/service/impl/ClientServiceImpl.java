@@ -7,11 +7,11 @@ import com.t1.common.constant.SecurityConstants;
 import com.t1.common.lock.DistributedLock;
 import com.t1.common.model.PageResult;
 import com.t1.common.model.R;
-import com.t1.redis.template.RedisRepository;
 import com.t1.common.service.impl.SuperServiceImpl;
 import com.t1.oauth.mapper.ClientMapper;
 import com.t1.oauth.model.Client;
 import com.t1.oauth.service.IClientService;
+import com.t1.redis.template.RedisRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * <p>
  */
 @Slf4j
@@ -76,7 +76,6 @@ public class ClientServiceImpl extends SuperServiceImpl<ClientMapper, Client> im
         wrapper.eq("client_id", clientId);
         return this.getOne(wrapper);
     }
-
 
     private String clientRedisKey(String clientId) {
         return SecurityConstants.CACHE_CLIENT_KEY + ":" + clientId;

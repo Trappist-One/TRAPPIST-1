@@ -11,11 +11,11 @@
 
     <artifactId>t1-outside-covid-19</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.t1</groupId>
-            <artifactId>t1-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.t1</groupId>-->
+<!--            <artifactId>t1-common</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

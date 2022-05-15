@@ -4,6 +4,7 @@ import com.t1.log.model.Audit;
 import com.t1.log.service.IAuditService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
  */
 @Slf4j
 @ConditionalOnProperty(name = "t1.audit-log.log-type", havingValue = "logger", matchIfMissing = true)
+@Service
 public class LoggerAuditServiceImpl implements IAuditService {
     private static final String MSG_PATTERN = "{}|{}|{}|{}|{}|{}|{}|{}";
 

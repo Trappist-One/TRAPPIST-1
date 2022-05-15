@@ -3,6 +3,8 @@ package com.t1.oauth.handler;
 import cn.hutool.core.util.StrUtil;
 import com.t1.common.model.R;
 import com.t1.common.utils.JsonUtil;
+import com.t1.oauth.service.impl.UnifiedLogoutService;
+import com.t1.oauth2.common.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,22 +13,33 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @author Bruce Lee(copy)
+ * @author Bruce Lee (Copy)
  * @date 2020/3/10
  * <p>
  */
 @Slf4j
 public class OauthLogoutSuccessHandler implements LogoutSuccessHandler {
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+	private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+	@Resource
+	private UnifiedLogoutService unifiedLogoutService;
+
+	@Resource
+	private SecurityProperties securityProperties;
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+		if (securityProperties.getAuth().getUnifiedLogout()) {
+			unifiedLogoutService.allLogout();
+		}
+
 		String redirectUri = request.getParameter("redirect_uri");
 		if (StrUtil.isNotEmpty(redirectUri)) {
 			//重定向指定的地址

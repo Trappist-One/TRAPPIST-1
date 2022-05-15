@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>
- * activiti业务逻辑处理Sql
+ * <p>* activiti业务逻辑处理Sql
  * </p>
  *
  * @author Bruce Lee ( copy )

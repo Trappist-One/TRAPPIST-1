@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.DispatcherType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,7 +35,10 @@ public class XssFilterConfig {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setDispatcherTypes(DispatcherType.REQUEST);
         registration.setFilter(new XssFilter());
-        registration.addUrlPatterns(StrUtil.split(urlPatterns, ","));
+        List<String> split = StrUtil.split(urlPatterns, ",");
+        if (split != null) {
+            registration.addUrlPatterns(split.toArray(new String[split.size()]));
+        }
         registration.setName("xssFilter");
         registration.setOrder(FilterRegistrationBean.HIGHEST_PRECEDENCE);
         Map<String, String> initParameters = new HashMap<String, String>();

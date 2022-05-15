@@ -3,6 +3,7 @@ package com.t1.oauth.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.t1.common.constant.SecurityConstants;
+import com.t1.oauth2.common.util.AuthUtils;
 import com.t1.oauth.service.T1UserDetailsService;
 import com.t1.oauth2.common.util.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,10 @@ import java.util.List;
 /**
  * 用户service工厂
  *
- * @author zlt
+ * @author Bruce Lee (Copy)
  * @version 1.0
  * @date 2021/7/24
  * <p>
- * Blog: https://zlt2000.gitee.io
- * Github: https://github.com/zlt2000
  */
 @Slf4j
 @Service
