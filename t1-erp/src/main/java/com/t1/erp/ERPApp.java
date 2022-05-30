@@ -1,6 +1,6 @@
-package com.t1.autogo;
+package com.t1.erp;
 
-public class AutogoApp {
+public class ERPApp {
     public static void main(String[] args) {
 
     }

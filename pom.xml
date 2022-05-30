@@ -15,7 +15,7 @@
 
         <module>t1-plugins</module>
         <module>t1-outside</module>
-        <module>t1-autogo</module>
+        <module>t1-erp</module>
         <module>t1-job</module>
     </modules>
     <packaging>pom</packaging>
